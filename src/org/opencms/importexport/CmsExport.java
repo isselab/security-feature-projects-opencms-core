@@ -84,6 +84,8 @@ import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.io.SAXWriter;
+import org.gravity.security.annotations.requirements.Critical;
+import org.gravity.security.annotations.requirements.Secrecy;
 import org.xml.sax.SAXException;
 
 /**
@@ -95,6 +97,7 @@ import org.xml.sax.SAXException;
  *
  * @since 6.0.0
  */
+@Critical(secrecy = {"CmsUser.getPassword():String", "CmsExport.exportUser(Element,CmsUser):void"})
 public class CmsExport {
 
     /** The log object for this class. */
@@ -1259,6 +1262,7 @@ public class CmsExport {
      * @throws CmsImportExportException if something goes wrong
      * @throws SAXException if something goes wrong processing the manifest.xml
      */
+    @Secrecy
     protected void exportUser(Element parent, CmsUser user) throws CmsImportExportException, SAXException {
 
         try {

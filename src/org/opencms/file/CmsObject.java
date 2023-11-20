@@ -76,6 +76,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import org.gravity.security.annotations.requirements.Critical;
+import org.gravity.security.annotations.requirements.Integrity;
+import org.gravity.security.annotations.requirements.Secrecy;
+
 /**
  * This pivotal class provides all authorized access to the OpenCms VFS resources.<p>
  *
@@ -98,6 +102,11 @@ import java.util.Set;
  *
  * @since 6.0.0
  */
+@Critical(
+		integrity = {
+				"CmsSecurityManager.resetPassword(CmsRequestContext,String,String,CmsSecondFactorInfo,String):void",
+				"CmsSecurityManager.setPassword(CmsRequestContext,String,String):void"}
+		)
 public final class CmsObject {
 
     /** The request context. */
@@ -3952,6 +3961,7 @@ public final class CmsObject {
      *
      * @throws CmsException if operation was not successful
      */
+    @Integrity
     public void setPassword(String username, String newPassword) throws CmsException {
 
         m_securityManager.setPassword(m_context, username, newPassword);
@@ -3967,6 +3977,7 @@ public final class CmsObject {
      *
      * @throws CmsException if the user data could not be read from the database
      */
+    @Integrity
     public void setPassword(String username, String oldPassword, CmsSecondFactorInfo secondFactor, String newPassword)
     throws CmsException {
 
@@ -3982,6 +3993,7 @@ public final class CmsObject {
      *
      * @throws CmsException if the user data could not be read from the database
      */
+    @Integrity
     public void setPassword(String username, String oldPassword, String newPassword) throws CmsException {
 
         m_securityManager.resetPassword(m_context, username, oldPassword, null, newPassword);

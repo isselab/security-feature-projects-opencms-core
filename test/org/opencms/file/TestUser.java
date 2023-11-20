@@ -48,6 +48,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.gravity.security.annotations.requirements.Critical;
+
 import com.google.common.collect.Sets;
 
 import junit.extensions.TestSetup;
@@ -57,6 +59,12 @@ import junit.framework.TestSuite;
 /**
  * Unit tests for OpenCms user object.<p>
  */
+@Critical(
+		integrity = {
+				"CmsObject.setPassword(String,String):void",
+				"CmsObject.setPassword(String,String,String):void"
+				}
+		)
 public class TestUser extends OpenCmsTestCase {
 
     /**

@@ -43,6 +43,8 @@ import org.opencms.test.OpenCmsTestProperties;
 
 import java.util.HashMap;
 
+import org.gravity.security.annotations.requirements.Critical;
+
 import com.lambdaworks.crypto.SCryptUtil;
 
 import dev.samstevens.totp.code.DefaultCodeGenerator;
@@ -57,6 +59,15 @@ import junit.framework.TestSuite;
  *
  * @since 6.0
  */
+@Critical(
+		secrecy = {
+				"CmsUser.getPassword():String"
+				},
+		integrity = {
+				"CmsObject.setPassword(String,String):void",
+				"CmsObject.setPassword(String,String,String):void"
+				}
+		)
 public class TestLoginAndPasswordHandler extends OpenCmsTestCase {
 
     /**

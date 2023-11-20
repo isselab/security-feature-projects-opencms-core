@@ -34,11 +34,14 @@ import org.opencms.main.CmsIllegalStateException;
 import org.opencms.main.OpenCms;
 import org.opencms.util.CmsStringUtil;
 
+import org.gravity.security.annotations.requirements.Critical;
+
 /**
  * Validating bean for changing the password.<p>
  *
  * @since 6.0.0
  */
+@Critical(integrity = "CmsObject.setPassword(String,String,String):void")
 public class CmsPasswordInfo {
 
     /** Cms Context. */
@@ -80,6 +83,7 @@ public class CmsPasswordInfo {
      *
      * @throws CmsException if something goes wrong
      */
+    // TODO: Feature
     public void applyChanges() throws CmsException {
 
         if (m_userName == null) {

@@ -68,11 +68,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 
+import org.gravity.security.annotations.requirements.Critical;
+
 /**
  * Main system user account management view.<p>
  *
  * @since 6.5.6
  */
+@Critical(secrecy = "CmsUser.getPassword():String")
 public class CmsUserDataImportList extends A_CmsUsersList {
 
     /** Value for the delete action. */
@@ -161,7 +164,7 @@ public class CmsUserDataImportList extends A_CmsUsersList {
                         String password = user.getPassword();
                         if (password.indexOf("_") == -1) {
                             try {
-                                password = OpenCms.getPasswordHandler().digest(password);
+                                password = OpenCms.getPasswordHandler().digest(password); // TODO: feature
                             } catch (CmsPasswordEncryptionException e) {
                                 throw new CmsRuntimeException(
                                     Messages.get().container(Messages.ERR_DIGEST_PASSWORD_0),

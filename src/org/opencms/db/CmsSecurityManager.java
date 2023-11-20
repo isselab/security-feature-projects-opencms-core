@@ -112,6 +112,8 @@ import java.util.Set;
 
 import org.apache.commons.logging.Log;
 
+import org.gravity.security.annotations.requirements.Critical;
+import org.gravity.security.annotations.requirements.Integrity;
 /**
  * The OpenCms security manager.<p>
  *
@@ -120,6 +122,8 @@ import org.apache.commons.logging.Log;
  *
  * @since 6.0.0
  */
+//TODO: feature
+@Critical(integrity = {"CmsDriverManager.setPassword(CmsDbContext,String,String):void", "CmsDriverManager.resetPassword(CmsDbContext,String,String,CmsSecondFactorInfo,String):void"})
 public final class CmsSecurityManager {
 
     /** The log object for this class. */
@@ -5875,6 +5879,7 @@ public final class CmsSecurityManager {
      * @throws CmsException if the user data could not be read from the database
      * @throws CmsSecurityException if the specified user name and old password could not be verified
      */
+    @Integrity
     public void resetPassword(
         CmsRequestContext context,
         String username,
@@ -6210,6 +6215,7 @@ public final class CmsSecurityManager {
      * @throws CmsException if operation was not successful
      * @throws CmsRoleViolationException if the current user does not own the rule {@link CmsRole#ACCOUNT_MANAGER}
      */
+    @Integrity
     public void setPassword(CmsRequestContext context, String username, String newPassword)
     throws CmsException, CmsRoleViolationException {
 
@@ -7275,6 +7281,7 @@ public final class CmsSecurityManager {
      * @throws CmsDataAccessException if something goes wrong accessing the database
      * @throws CmsRoleViolationException if the user has not the needed permissions
      */
+    // TODO: Feature
     protected void checkRoleForUserModification(CmsDbContext dbc, String username, CmsRole role)
     throws CmsDataAccessException, CmsRoleViolationException {
 

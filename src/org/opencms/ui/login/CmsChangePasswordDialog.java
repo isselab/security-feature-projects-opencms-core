@@ -57,6 +57,8 @@ import java.util.function.Consumer;
 
 import org.apache.commons.logging.Log;
 
+import org.gravity.security.annotations.requirements.Critical;
+
 import com.vaadin.server.UserError;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
@@ -69,6 +71,7 @@ import com.vaadin.v7.data.Property.ValueChangeListener;
 /**
  * Dialog used to change the password.<p>
  */
+@Critical(integrity = "CmsObject.setPassword(String,String,CmsSecondFactorInfo,String):void")
 public class CmsChangePasswordDialog extends CmsBasicDialog {
 
     /** Logger instance for this class. */
@@ -318,13 +321,13 @@ public class CmsChangePasswordDialog extends CmsBasicDialog {
 
         if (validatePasswords(password1, password2)) {
             String oldPassword = m_form.getOldPassword();
-            if (oldPassword.equals(password1)) {
+            if (oldPassword.equals(password1)) {  // TODO: time constant check
                 m_form.setErrorPassword1(
                     new UserError(
                         Messages.get().getBundle(m_locale).key(Messages.GUI_PWCHANGE_DIFFERENT_PASSWORD_REQUIRED_0)),
                     OpenCmsTheme.SECURITY_INVALID);
             } else {
-                maybeCheckSecondFactor((CmsSecondFactorInfo secondFactor) -> {
+                maybeCheckSecondFactor((CmsSecondFactorInfo secondFactor) -> { // TODO: feature
 
                     try {
                         m_cms.setPassword(m_user.getName(), oldPassword, secondFactor, password1);

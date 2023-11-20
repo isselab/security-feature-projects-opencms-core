@@ -46,11 +46,14 @@ import java.util.Locale;
 
 import org.apache.commons.logging.Log;
 
+import org.gravity.security.annotations.requirements.Critical;
+
 import com.vaadin.server.UserError;
 
 /**
  * Dialog used to change the password.<p>
  */
+@Critical(integrity = "CmsObject.setPassword(String,String):void")
 public class CmsSetPasswordDialog extends CmsChangePasswordDialog {
 
     /** Logger instance for this class. */
@@ -91,14 +94,14 @@ public class CmsSetPasswordDialog extends CmsChangePasswordDialog {
                     if (twoFactorHandler.needsTwoFactorAuthentication(m_user)
                         && twoFactorHandler.hasSecondFactor(m_user)) {
                         if (!twoFactorHandler.verifySecondFactor(m_user, secondFactorInfo)) {
-                            throw new CmsAuthentificationException(
+                            throw new CmsAuthentificationException( // TODO: feature
                                 org.opencms.security.Messages.get().container(
                                     org.opencms.security.Messages.ERR_VERIFICATION_FAILED_1,
                                     m_user.getName()));
                         }
                     }
                     m_cms.setPassword(m_user.getName(), password1);
-                    CmsUserLog.logPasswordChange(m_cms, m_user.getName());
+                    CmsUserLog.logPasswordChange(m_cms, m_user.getName()); // TODO: feature
                     CmsTokenValidator.clearToken(CmsLoginUI.m_adminCms, m_user);
                     showSetPasswordSuccess();
                 } catch (CmsException e) {

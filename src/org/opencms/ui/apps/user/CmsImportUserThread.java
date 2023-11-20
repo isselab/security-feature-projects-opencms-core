@@ -49,9 +49,12 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 
+import org.gravity.security.annotations.requirements.Critical;
+
 /**
  * Class for the import user thread.<p>
  */
+@Critical(secrecy = "CmsUser.getPassword():String")
 public class CmsImportUserThread extends A_CmsReportThread {
 
     /** Log instance for this class. */

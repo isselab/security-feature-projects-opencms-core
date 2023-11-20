@@ -73,11 +73,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
 
+import org.gravity.security.annotations.requirements.Critical;
+
 /**
  * Dialog to edit new or existing user in the administration view.<p>
  *
  * @since 6.0.0
  */
+@Critical(integrity = "CmsObject.setPassword(String,String):void")
 public abstract class A_CmsEditUserDialog extends CmsWidgetDialog {
 
     /** localized messages Keys prefix. */

@@ -116,15 +116,15 @@ implements I_CmsPasswordHandler, I_CmsPasswordSecurityEvaluator, I_CmsPasswordGe
         boolean success = false;
         if (DIGEST_TYPE_PLAIN.equals(m_digestType)) {
 
-            success = plainPassword.equals(digestedPassword);
+            success = plainPassword.equals(digestedPassword); // TODO: time constant compare?
         } else if (DIGEST_TYPE_SCRYPT.equals(m_digestType)) {
             try {
-                success = SCryptUtil.check(plainPassword, digestedPassword);
+                success = SCryptUtil.check(plainPassword, digestedPassword); // TODO: feature
             } catch (IllegalArgumentException e) {
                 // hashed valued not right, check if we want to fall back to MD5
                 if (useFallback) {
                     try {
-                        success = digestedPassword.equals(digest(plainPassword, m_scryptFallback, m_inputEncoding));
+                        success = digestedPassword.equals(digest(plainPassword, m_scryptFallback, m_inputEncoding));  // TODO: fallback?
                     } catch (CmsPasswordEncryptionException e1) {
                         // success will be false
                     }
@@ -133,7 +133,7 @@ implements I_CmsPasswordHandler, I_CmsPasswordSecurityEvaluator, I_CmsPasswordGe
         } else {
             // old default MD5
             try {
-                success = digestedPassword.equals(digest(plainPassword));
+                success = digestedPassword.equals(digest(plainPassword)); // TODO: time constant compare?
             } catch (CmsPasswordEncryptionException e) {
                 // this indicates validation has failed
             }
@@ -144,6 +144,7 @@ implements I_CmsPasswordHandler, I_CmsPasswordSecurityEvaluator, I_CmsPasswordGe
     /**
      * @see org.opencms.security.I_CmsPasswordHandler#digest(java.lang.String)
      */
+    // TODO: Feature
     public String digest(String password) throws CmsPasswordEncryptionException {
 
         return digest(password, m_digestType, m_inputEncoding);

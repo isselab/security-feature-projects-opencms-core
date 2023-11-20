@@ -155,6 +155,9 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.logging.Log;
 
+import org.gravity.security.annotations.requirements.Critical;
+import org.gravity.security.annotations.requirements.Integrity;
+
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
@@ -164,6 +167,7 @@ import com.google.common.collect.Multimap;
  *
  * @since 6.0.0
  */
+@Critical(secrecy = "CmsUser.getPassword():String")
 public final class CmsDriverManager implements I_CmsEventListener {
 
     /**
@@ -5836,7 +5840,7 @@ public final class CmsDriverManager implements I_CmsEventListener {
         }
 
         if (mode == LoginUserMode.standard) {
-            CmsTwoFactorAuthenticationHandler handler = OpenCms.getTwoFactorAuthenticationHandler();
+            CmsTwoFactorAuthenticationHandler handler = OpenCms.getTwoFactorAuthenticationHandler(); // TODO: feature
             if (handler.needsTwoFactorAuthentication(newUser)) {
                 // note that password check must already have been successful at this stage
 
@@ -8827,6 +8831,7 @@ public final class CmsDriverManager implements I_CmsEventListener {
      * @throws CmsException if the user data could not be read from the database
      * @throws CmsSecurityException if the specified username and old password could not be verified
      */
+    @Integrity
     public void resetPassword(
         CmsDbContext dbc,
         String username,
@@ -9369,6 +9374,7 @@ public final class CmsDriverManager implements I_CmsEventListener {
      * @throws CmsException if operation was not successful
      * @throws CmsIllegalArgumentException if the user with the <code>username</code> was not found
      */
+    @Integrity
     public void setPassword(CmsDbContext dbc, String username, String newPassword)
     throws CmsException, CmsIllegalArgumentException {
 

@@ -44,6 +44,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
+import org.gravity.security.annotations.requirements.Critical;
+import org.gravity.security.annotations.requirements.Integrity;
+import org.gravity.security.annotations.requirements.Secrecy;
+
 /**
  * A user principal in the OpenCms permission system.<p>
  *
@@ -68,6 +72,7 @@ import java.util.Objects;
  *
  * @see CmsGroup
  */
+@Critical(secrecy = "CmsUser.m_password:String")
 public class CmsUser extends CmsPrincipal implements Cloneable {
 
     /** Flag indicating changed additional infos. */
@@ -104,6 +109,7 @@ public class CmsUser extends CmsPrincipal implements Cloneable {
     private String m_lastname;
 
     /** The password of this user. */
+    @Secrecy
     private String m_password;
 
     /**
@@ -566,6 +572,7 @@ public class CmsUser extends CmsPrincipal implements Cloneable {
      *
      * @return the encrypted user password
      */
+    @Secrecy
     public String getPassword() {
 
         return m_password;
@@ -790,6 +797,7 @@ public class CmsUser extends CmsPrincipal implements Cloneable {
      *
      * @param value the password to set
      */
+    @Integrity
     public void setPassword(String value) {
 
         try {

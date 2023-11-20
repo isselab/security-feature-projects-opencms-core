@@ -78,6 +78,9 @@ import java.util.Objects;
 import org.apache.commons.logging.Log;
 import org.apache.commons.mail.EmailException;
 
+import org.gravity.security.annotations.requirements.Critical;
+import org.gravity.security.annotations.requirements.Integrity;
+
 import com.vaadin.data.provider.DataProvider;
 import com.vaadin.data.provider.ListDataProvider;
 import com.vaadin.server.UserError;
@@ -105,6 +108,7 @@ import com.vaadin.v7.ui.TextField;
 /**
  * Class for the dialog to edit user settings.<p>
  */
+@Critical(integrity = {"CmsObject.setPassword(String,String):void", "CmsUserEditDialog.saveUser():void"})
 @SuppressWarnings("deprecation")
 public class CmsUserEditDialog extends CmsBasicDialog implements I_CmsPasswordFetcher {
 
@@ -1490,6 +1494,7 @@ public class CmsUserEditDialog extends CmsBasicDialog implements I_CmsPasswordFe
      *
      * @throws CmsException exception
      */
+    @Integrity
     private void saveUser() throws CmsException {
 
         updateUser(m_user);
@@ -1497,7 +1502,7 @@ public class CmsUserEditDialog extends CmsBasicDialog implements I_CmsPasswordFe
         if (!CmsStringUtil.isEmptyOrWhitespaceOnly(m_pw.getPassword1())) {
             if (isPasswordValid()) {
                 m_cms.setPassword(m_user.getName(), m_pw.getPassword1());
-                CmsUserLog.logPasswordChange(m_cms, m_user.getName());
+                CmsUserLog.logPasswordChange(m_cms, m_user.getName());  // TODO: feature
             }
         }
 

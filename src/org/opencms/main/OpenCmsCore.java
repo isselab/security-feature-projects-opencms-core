@@ -1120,6 +1120,7 @@ public final class OpenCmsCore {
      * @see OpenCms#initCmsObject(CmsObject, CmsContextInfo)
      * @see OpenCms#initCmsObject(String)
      */
+    // TODO: check again
     protected CmsObject initCmsObject(CmsObject cms) {
 
         CmsRequestContext requestContext = cms.getRequestContext();

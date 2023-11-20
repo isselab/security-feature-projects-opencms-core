@@ -95,6 +95,8 @@ import java.util.concurrent.locks.Lock;
 
 import org.apache.commons.logging.Log;
 
+import org.gravity.security.annotations.requirements.Critical;
+import org.gravity.security.annotations.requirements.Integrity;
 import com.google.common.util.concurrent.Striped;
 
 /**
@@ -102,6 +104,7 @@ import com.google.common.util.concurrent.Striped;
  *
  * @since 6.0.0
  */
+@Critical(secrecy = "CmsUser.getPassword():String")
 public class CmsUserDriver implements I_CmsUserDriver {
 
     /** The root path for organizational units. */
@@ -1993,6 +1996,7 @@ public class CmsUserDriver implements I_CmsUserDriver {
     /**
      * @see org.opencms.db.I_CmsUserDriver#writePassword(org.opencms.db.CmsDbContext, java.lang.String, java.lang.String, java.lang.String)
      */
+    @Integrity
     public void writePassword(CmsDbContext dbc, String userFqn, String oldPassword, String newPassword)
     throws CmsDataAccessException, CmsPasswordEncryptionException {
 
