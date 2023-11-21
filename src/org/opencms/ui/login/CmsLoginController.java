@@ -85,6 +85,8 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.commons.logging.Log;
 
+import org.gravity.security.annotations.requirements.Secrecy;
+
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinService;
 import com.vaadin.server.VaadinServletRequest;
@@ -104,6 +106,7 @@ public class CmsLoginController {
     public static class CmsLoginTargetInfo {
 
         /** The password. */
+        @Secrecy
         private String m_password;
 
         /** The login target. */

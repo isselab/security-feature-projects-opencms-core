@@ -167,7 +167,7 @@ import com.google.common.collect.Multimap;
  *
  * @since 6.0.0
  */
-@Critical(secrecy = "CmsUser.getPassword():String")
+@Critical(secrecy = "CmsUser.getPassword():String", integrity = "CmsUserDriver.writePassword(CmsDbContext,String,String,String):void")
 public final class CmsDriverManager implements I_CmsEventListener {
 
     /**
