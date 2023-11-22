@@ -71,7 +71,7 @@ public class CmsLoginManager {
         private long m_disableTimeStart;
 
         /** The count of the failed attempts. */
-        private int m_invalidLoginCount;
+        private int m_invalidLoginCount; // TODO: feature
 
         /**
          * Creates a new user data instance.<p>

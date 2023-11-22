@@ -76,7 +76,7 @@ public class CmsSecondFactorInfo {
         if (!(obj instanceof CmsSecondFactorInfo)) {
             return false;
         }
-        CmsSecondFactorInfo other = ((CmsSecondFactorInfo)obj);
+        CmsSecondFactorInfo other = ((CmsSecondFactorInfo)obj); // TODO: not time constant code?
         if (!Objects.equals(m_code, other.m_code)) {
             return false;
         }
