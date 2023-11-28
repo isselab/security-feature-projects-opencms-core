@@ -42,6 +42,7 @@ import org.apache.commons.logging.Log;
 import org.bouncycastle.crypto.digests.SHA256Digest;
 import org.bouncycastle.crypto.generators.HKDFBytesGenerator;
 import org.bouncycastle.crypto.params.HKDFParameters;
+import org.gravity.security.annotations.requirements.Secrecy;
 
 import com.google.common.io.BaseEncoding;
 
@@ -66,6 +67,7 @@ public class CmsAESTextEncryption implements I_CmsTextEncryption {
     private CmsParameterConfiguration m_config = new CmsParameterConfiguration();
 
     /** The key used for encryption / decryption. */
+    @Secrecy
     private SecretKey m_key;
 
     /** The name under which this is registered. */

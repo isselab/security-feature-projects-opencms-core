@@ -34,15 +34,21 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import org.gravity.security.annotations.requirements.Critical;
+import org.gravity.security.annotations.requirements.Secrecy;
+
 /**
  * Second factor information for login.
  */
+@Critical(secrecy = {"CmsTwoFactorAuthenticationConfig.m_secret:String","CmsSecondFactorInfo.m_code:String"})
 public class CmsSecondFactorInfo {
 
     /** The verification code. */
+    @Secrecy
     private String m_code;
 
     /** The shared secret. */
+    @Secrecy
     private String m_secret;
 
     /**
@@ -92,6 +98,7 @@ public class CmsSecondFactorInfo {
      *
      * @return the verification code
      */
+    @Secrecy
     public String getCode() {
 
         return m_code;
@@ -102,6 +109,7 @@ public class CmsSecondFactorInfo {
      *
      * @return the secret
      */
+    @Secrecy
     public String getSecret() {
 
         return m_secret;

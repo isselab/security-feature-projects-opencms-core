@@ -33,10 +33,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.dom4j.Element;
+import org.gravity.security.annotations.requirements.Critical;
+import org.gravity.security.annotations.requirements.Secrecy;
 
 /**
  * Represents the configuration for the two-factor authentication feature.
  */
+@Critical(secrecy = "CmsTwoFactorAuthenticationConfig.m_secret:String")
 public class CmsTwoFactorAuthenticationConfig {
 
     /** The original XML element from which the configuration was read. */
@@ -52,6 +55,7 @@ public class CmsTwoFactorAuthenticationConfig {
     private CmsTwoFactorAuthenticationUserPolicy m_policy;
 
     /** The secret key used to encrypt/decrypt the two-factor authentication data for users. */
+    @Secrecy
     private String m_secret;
 
     /** The setup message. */
@@ -112,6 +116,7 @@ public class CmsTwoFactorAuthenticationConfig {
      *
      * @return the secret key
      */
+    @Secrecy
     public String getSecret() {
 
         return m_secret;

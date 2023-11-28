@@ -44,6 +44,8 @@ import java.util.Locale;
 
 import org.apache.commons.logging.Log;
 
+import org.gravity.security.annotations.requirements.Critical;
+
 import dev.samstevens.totp.code.CodeGenerator;
 import dev.samstevens.totp.code.CodeVerifier;
 import dev.samstevens.totp.code.DefaultCodeGenerator;
@@ -65,6 +67,7 @@ import dev.samstevens.totp.util.Utils;
  * <p>
  * This class can both set up a TOTP second factor for a user, as well as be used to authenticate a user using the verification code generated using their second factor.
  */
+@Critical(secrecy = "CmsTwoFactorAuthenticationConfig.getSecret():String")
 public class CmsTwoFactorAuthenticationHandler { // TODO: feature
 
     /**
