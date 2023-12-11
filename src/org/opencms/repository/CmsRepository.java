@@ -50,6 +50,9 @@ import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.logging.Log;
 
+import org.gravity.security.annotations.requirements.Critical;
+import org.gravity.security.annotations.requirements.Secrecy;
+
 import com.google.common.cache.CacheBuilder;
 
 /**
@@ -68,12 +71,14 @@ import com.google.common.cache.CacheBuilder;
  *
  * @since 6.5.6
  */
+@Critical(secrecy = "CmsRepository.m_passwordSalt:String")
 public class CmsRepository extends A_CmsRepository {
 
     /** The log object for this class. */
     private static final Log LOG = CmsLog.getLog(CmsRepository.class);
 
     /** Random value used for hashing login credentials for the CmsObject cache. */
+    @Secrecy
     private static String m_passwordSalt = RandomStringUtils.randomAlphanumeric(10);
 
     /** The name of the parameter of the configuration. */

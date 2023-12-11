@@ -66,7 +66,7 @@ public class CmsDavSessionProvider implements DavSessionProvider {
         }
         String authHeader = request.getHeader("Authorization");
         I_CmsRepositorySession repoSession = null;
-        String basic = HttpServletRequest.BASIC_AUTH;
+        String basic = HttpServletRequest.BASIC_AUTH; // TODO: feature
         if ((authHeader != null) && authHeader.toUpperCase().startsWith(basic)) {
             String base64Token = authHeader.substring(basic.length() + 1);
             String token = new String(Base64.decodeBase64(base64Token.getBytes()));

@@ -67,7 +67,7 @@ public class CmsSecondFactorInfo {
      * @param secret the secret
      * @param code the verification code
      */
-    public CmsSecondFactorInfo(String secret, String code) {
+    public CmsSecondFactorInfo(String secret, String code) { // TODO: integrity?
 
         m_secret = StringUtils.trim(secret);
         m_code = StringUtils.trim(code);
