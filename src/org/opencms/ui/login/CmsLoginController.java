@@ -85,6 +85,7 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.commons.logging.Log;
 
+import org.gravity.security.annotations.requirements.Critical;
 import org.gravity.security.annotations.requirements.Secrecy;
 
 import com.vaadin.server.Page;
@@ -98,6 +99,7 @@ import com.vaadin.ui.Window;
 /**
  * Controller class which actually handles the login dialog logic.<p>
  */
+@Critical(secrecy = "CmsLoginTargetInfo.m_password:String")
 public class CmsLoginController {
 
     /**
@@ -135,6 +137,7 @@ public class CmsLoginController {
          *
          * @return the password
          */
+        @Secrecy
         public String getPassword() {
 
             return m_password;

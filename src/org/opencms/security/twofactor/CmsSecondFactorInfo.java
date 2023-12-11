@@ -40,7 +40,7 @@ import org.gravity.security.annotations.requirements.Secrecy;
 /**
  * Second factor information for login.
  */
-@Critical(secrecy = {"CmsTwoFactorAuthenticationConfig.m_secret:String","CmsSecondFactorInfo.m_code:String"})
+@Critical(secrecy = {"CmsTwoFactorAuthenticationConfig.m_secret:String","CmsSecondFactorInfo.m_code:String","CmsSecondFactorInfo.m_secret:String"})
 public class CmsSecondFactorInfo {
 
     /** The verification code. */

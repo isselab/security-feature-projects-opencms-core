@@ -42,6 +42,7 @@ import org.apache.commons.logging.Log;
 import org.bouncycastle.crypto.digests.SHA256Digest;
 import org.bouncycastle.crypto.generators.HKDFBytesGenerator;
 import org.bouncycastle.crypto.params.HKDFParameters;
+import org.gravity.security.annotations.requirements.Critical;
 import org.gravity.security.annotations.requirements.Secrecy;
 
 import com.google.common.io.BaseEncoding;
@@ -49,6 +50,7 @@ import com.google.common.io.BaseEncoding;
 /**
  * Default text encryption class using AES, where the encryption key is generated from a string passed in as a parameter.
  */
+@Critical(secrecy = "CmsAESTextEncryption.m_key:SecretKey")
 public class CmsAESTextEncryption implements I_CmsTextEncryption {
 
     /** The name of the algorithm. */
