@@ -85,6 +85,8 @@ import javax.servlet.jsp.PageContext;
 
 import org.apache.commons.logging.Log;
 
+import org.gravity.security.annotations.requirements.Critical;
+
 /**
  * Provides methods for the user preferences dialog. <p>
  *
@@ -96,6 +98,7 @@ import org.apache.commons.logging.Log;
  *
  * @since 6.0.0
  */
+@Critical(integrity = "CmsPasswordInfo.setNewPwd(String):void")
 public class CmsPreferences extends CmsTabDialog {
 
     /** Value for the action: change the password. */

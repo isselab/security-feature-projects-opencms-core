@@ -43,12 +43,15 @@ import javax.servlet.http.Cookie;
 
 import org.apache.commons.logging.Log;
 
+import org.gravity.security.annotations.requirements.Critical;
+
 /**
  * Login bean which sets a cookie that can be used by {@link CmsPersistentLoginAuthorizationHandler} to automatically
  * log the user back in when his session has expired.
  *
  * The cookie's lifetime can be set using the setTokenLifetime method
  */
+@Critical(secrecy = "CmsPersistentLoginTokenHandler.createToken(CmsObject):String")
 public class CmsJspLoginPersistingBean extends CmsJspLoginBean {
 
     /** The token life time. */
@@ -95,7 +98,7 @@ public class CmsJspLoginPersistingBean extends CmsJspLoginBean {
     /**
      * @see org.opencms.jsp.CmsJspLoginBean#login(java.lang.String, java.lang.String, java.lang.String)
      */
-    @Override
+    @Override // TODO: feature
     public void login(String userName, String password, String projectName) {
 
         super.login(userName, password, projectName);

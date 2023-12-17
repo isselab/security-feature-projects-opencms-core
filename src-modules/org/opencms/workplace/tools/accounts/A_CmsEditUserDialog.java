@@ -80,7 +80,7 @@ import org.gravity.security.annotations.requirements.Critical;
  *
  * @since 6.0.0
  */
-@Critical(integrity = "CmsObject.setPassword(String,String):void")
+@Critical(integrity = "CmsObject.setPassword(String,String):void", secrecy = "CmsPasswordInfo.getNewPwd():String")
 public abstract class A_CmsEditUserDialog extends CmsWidgetDialog {
 
     /** localized messages Keys prefix. */

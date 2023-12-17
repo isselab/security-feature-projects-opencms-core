@@ -46,6 +46,9 @@ import java.util.Locale;
 
 import org.apache.commons.logging.Log;
 
+import org.gravity.security.annotations.requirements.Critical;
+import org.gravity.security.annotations.requirements.Secrecy;
+
 import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.event.ShortcutListener;
 import com.vaadin.server.ExternalResource;
@@ -63,6 +66,7 @@ import com.vaadin.ui.TextField;
  * setup phase proves that they have actually added the secret to their authenticator app, i.e. not just clicked OK on a dialog they do
  * not understand.
  */
+@Critical(secrecy = {"CmsSecondFactorSetupInfo.getSecret():String", "CmsSecondFactorSetupDialog.m_secret:String"})
 public class CmsSecondFactorSetupDialog extends CmsBasicDialog {
 
     /** Logger instance for this class. */
@@ -87,6 +91,7 @@ public class CmsSecondFactorSetupDialog extends CmsBasicDialog {
     private Image m_qrCodeImage;
 
     /** The shared secret. */
+    @Secrecy
     private String m_secret;
 
     /** The label to display the shared secret. */

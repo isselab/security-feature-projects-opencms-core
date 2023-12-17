@@ -106,6 +106,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.collections.Buffer;
 import org.apache.commons.logging.Log;
 
+import org.gravity.security.annotations.requirements.Critical;
+
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Window;
 
@@ -118,6 +120,7 @@ import com.vaadin.ui.Window;
  * @see org.opencms.gwt.shared.rpc.I_CmsCoreService
  * @see org.opencms.gwt.shared.rpc.I_CmsCoreServiceAsync
  */
+@Critical(integrity = "CmsPasswordInfo.setNewPwd(String):void")
 public class CmsCoreService extends CmsGwtService implements I_CmsCoreService {
 
     /** The editor back-link URI. */

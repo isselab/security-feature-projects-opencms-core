@@ -35,13 +35,15 @@ import org.opencms.main.OpenCms;
 import org.opencms.util.CmsStringUtil;
 
 import org.gravity.security.annotations.requirements.Critical;
+import org.gravity.security.annotations.requirements.Integrity;
+import org.gravity.security.annotations.requirements.Secrecy;
 
 /**
  * Validating bean for changing the password.<p>
  *
  * @since 6.0.0
  */
-@Critical(integrity = "CmsObject.setPassword(String,String,String):void")
+@Critical(integrity = "CmsObject.setPassword(String,String,String):void", secrecy = {"CmsPasswordInfo.m_newPwd:String","CmsPasswordInfo.m_currentPwd:String","CmsPasswordInfo.getNewPwd():String","CmsPasswordInfo.getCurrentPwd():String"})
 public class CmsPasswordInfo {
 
     /** Cms Context. */
@@ -49,8 +51,10 @@ public class CmsPasswordInfo {
     /** Password Confirmation. */
     private String m_confirmation;
     /** Current (old) users password. */
+    @Secrecy
     private String m_currentPwd;
     /** New Password. */
+    @Secrecy
     private String m_newPwd;
     /** Current logged in user name. */
     private final String m_userName;
@@ -109,6 +113,7 @@ public class CmsPasswordInfo {
      *
      * @return the current password
      */
+    @Secrecy
     public String getCurrentPwd() {
 
         return m_currentPwd;
@@ -119,6 +124,7 @@ public class CmsPasswordInfo {
      *
      * @return the new password
      */
+    @Secrecy
     public String getNewPwd() {
 
         return m_newPwd;
@@ -162,6 +168,7 @@ public class CmsPasswordInfo {
      *
      * @param newPwd the new password to set
      */
+    @Integrity
     public void setNewPwd(String newPwd) {
 
         // leave password unchanged, if the new password is empty

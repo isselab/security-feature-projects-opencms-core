@@ -41,6 +41,9 @@ import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.logging.Log;
 
+import org.gravity.security.annotations.requirements.Critical;
+import org.gravity.security.annotations.requirements.Secrecy;
+
 import com.google.common.collect.Lists;
 
 /**
@@ -51,6 +54,7 @@ import com.google.common.collect.Lists;
  * A token is validated by looking up the additional info item for the user and checking whether the token is still valid
  * according to the stored expiration date.<p>
  */
+@Critical(secrecy = {"Token.m_key:String", "Token.getAdditionalInfoKey():String","Token.encode():String", "Token.getKey():String"})
 public class CmsPersistentLoginTokenHandler {
 
     /**
@@ -62,6 +66,7 @@ public class CmsPersistentLoginTokenHandler {
         public static final String SEPARATOR = "|";
 
         /** The key. */
+        @Secrecy
         private String m_key;
 
         /** The name. */
@@ -101,6 +106,7 @@ public class CmsPersistentLoginTokenHandler {
          *
          * @return the token string
          */
+        @Secrecy
         public String encode() {
 
             return encodeName(m_name) + SEPARATOR + m_key;
@@ -111,6 +117,7 @@ public class CmsPersistentLoginTokenHandler {
          *
          * @return the additional info key
          */
+        @Secrecy
         public String getAdditionalInfoKey() {
 
             return KEY_PREFIX + m_key;
@@ -121,6 +128,7 @@ public class CmsPersistentLoginTokenHandler {
          *
          * @return the key
          */
+        @Secrecy
         public String getKey() {
 
             return m_key;
@@ -225,6 +233,7 @@ public class CmsPersistentLoginTokenHandler {
      *
      * @throws CmsException if something goes wrong
      */
+    @Secrecy
     public String createToken(CmsObject cms) throws CmsException {
 
         CmsUser user = cms.getRequestContext().getCurrentUser();

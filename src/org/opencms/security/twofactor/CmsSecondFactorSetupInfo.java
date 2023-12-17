@@ -27,15 +27,20 @@
 
 package org.opencms.security.twofactor;
 
+import org.gravity.security.annotations.requirements.Critical;
+import org.gravity.security.annotations.requirements.Secrecy;
+
 /**
  * The data needed to set up two-factor authentication for a user.
  */
+@Critical(secrecy = {"CmsSecondFactorSetupInfo.m_secret:String"})
 public class CmsSecondFactorSetupInfo {
 
     /** A data URL with the QR code to scan with authenticator apps. */
     private String m_qrCodeImageUrl;
 
     /** The shared secret. */
+    @Secrecy
     private String m_secret;
 
     /**
@@ -65,6 +70,7 @@ public class CmsSecondFactorSetupInfo {
      *
      * @return the shared secret
      */
+    @Secrecy
     public String getSecret() {
 
         return m_secret;

@@ -61,7 +61,8 @@ import junit.framework.TestSuite;
  */
 @Critical(
 		secrecy = {
-				"CmsUser.getPassword():String"
+				"CmsUser.getPassword():String",
+				"CmsSecondFactorSetupInfo.getSecret():String"
 				},
 		integrity = {
 				"CmsObject.setPassword(String,String):void",

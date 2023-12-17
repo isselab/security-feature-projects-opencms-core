@@ -108,7 +108,7 @@ import com.vaadin.v7.ui.TextField;
 /**
  * Class for the dialog to edit user settings.<p>
  */
-@Critical(integrity = {"CmsObject.setPassword(String,String):void", "CmsUserEditDialog.saveUser():void"})
+@Critical(integrity = {"CmsObject.setPassword(String,String):void", "CmsUserEditDialog.saveUser():void", "CmsPasswordInfo.setNewPwd(String):void"})
 @SuppressWarnings("deprecation")
 public class CmsUserEditDialog extends CmsBasicDialog implements I_CmsPasswordFetcher {
 
