@@ -61,6 +61,7 @@ public class CmsUgcSessionSecurityUtil {
      *
      *  @throws CmsUgcException if something goes wrong
      */
+    // &begin[xml_content]
     public static void checkCreateContent(CmsObject cms, CmsUgcConfiguration config) throws CmsUgcException {
 
         if (config.getMaxContentNumber().isPresent()) {
@@ -80,6 +81,7 @@ public class CmsUgcSessionSecurityUtil {
             }
         }
     }
+    // &end[xml_content]
 
     /**
      * Checks whether an  uploaded file can be created in the VFS, and throws an exception otherwise.
@@ -92,6 +94,7 @@ public class CmsUgcSessionSecurityUtil {
      *  @throws CmsUgcException if something goes wrong
      *
      */
+    // &begin[upload]
     public static void checkCreateUpload(CmsObject cms, CmsUgcConfiguration config, String name, long size)
     throws CmsUgcException {
 
@@ -125,4 +128,5 @@ public class CmsUgcSessionSecurityUtil {
             }
         }
     }
+    // &end[upload]
 }

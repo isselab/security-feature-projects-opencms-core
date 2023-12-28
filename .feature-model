@@ -1,0 +1,21 @@
+opencms
+    security
+        crypto
+            encryption
+            decryption
+        authentication
+            twofactor
+                user_policy
+            password
+            http_auth
+        access_control
+            permissions
+            roles
+            organizational_unit
+        validation
+            xml_content
+            upload
+        sanitization
+        logging
+        letsencrypt
+
