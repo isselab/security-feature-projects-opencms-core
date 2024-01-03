@@ -1,8 +1,9 @@
 opencms
     security
-        crypto
-            encryption
-            decryption
+        encryption
+            letsencrypt
+            text_encryption
+                aes
         authentication
             twofactor
                 user_policy
@@ -17,5 +18,3 @@ opencms
             upload
         sanitization
         logging
-        letsencrypt
-

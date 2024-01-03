@@ -264,7 +264,7 @@ public final class OpenCmsCore {
     private CmsImportExportManager m_importExportManager;
 
     /** The LetsEncrypt configuration. */
-    private CmsLetsEncryptConfiguration m_letsEncryptConfig;
+    private CmsLetsEncryptConfiguration m_letsEncryptConfig;  // &line[letsencrypt]
 
     /** The link manager to resolve links in &lt;cms:link&gt; tags. */
     private CmsLinkManager m_linkManager;
@@ -710,10 +710,12 @@ public final class OpenCmsCore {
      *
      * @return the LetsEncrypt configuration
      */
+    // &begin[letsencrypt]
     protected CmsLetsEncryptConfiguration getLetsEncryptConfig() {
 
         return m_letsEncryptConfig;
     }
+    // &end[letsencrypt]
 
     /**
      * Returns the link manager to resolve links in &lt;link&gt; tags.<p>
@@ -1801,7 +1803,7 @@ public final class OpenCmsCore {
 
             m_templateContextManager = new CmsTemplateContextManager(initCmsObject(adminCms));
             m_workflowManager = systemConfiguration.getWorkflowManager();
-            m_letsEncryptConfig = systemConfiguration.getLetsEncryptConfig();
+            m_letsEncryptConfig = systemConfiguration.getLetsEncryptConfig();  // &line[letsencrypt]
 
             m_userDataRequestManager = systemConfiguration.getUserDataRequestManager();
             if (m_userDataRequestManager != null) {

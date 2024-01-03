@@ -146,7 +146,7 @@ public class CmsSitesWebserverThread extends A_CmsReportThread {
             "INFO thread for run of server script started by User: "
                 + getCms().getRequestContext().getCurrentUser().getName());
         if (CmsSiteManager.isLetsEncryptConfiguredForWebserverThread()) {
-            updateLetsEncrypt();
+            updateLetsEncrypt();  // &line[letsencrypt]
         } else {
             try {
                 deleteAllWebserverConfigs(m_filePrefix);

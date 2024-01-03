@@ -104,7 +104,7 @@ public class CmsTwoFactorAuthenticationHandler { // TODO: feature
     private CmsTwoFactorAuthenticationConfig m_config;
 
     /** The encryption for the additional infos of a user. */
-    private CmsAESTextEncryption m_encryption;
+    private CmsAESTextEncryption m_encryption;  // &line[aes]
 
     /** Shared secret generator (threadsafe). */
     private final SecretGenerator m_secretGenerator = new DefaultSecretGenerator();
@@ -126,7 +126,7 @@ public class CmsTwoFactorAuthenticationHandler { // TODO: feature
         m_config = config;
         m_cms = adminCms;
         if (config != null) {
-            m_encryption = new CmsAESTextEncryption(config.getSecret());  // TODO: feature
+            m_encryption = new CmsAESTextEncryption(config.getSecret()); // &line[aes]
         }
     }
 
@@ -374,7 +374,7 @@ public class CmsTwoFactorAuthenticationHandler { // TODO: feature
     private void encodeSecondFactor(CmsUser user, JSONObject json) {
 
         try {
-            user.getAdditionalInfo().put(ATTR_TWOFACTOR_INFO, m_encryption.encrypt(json.toString()));
+            user.getAdditionalInfo().put(ATTR_TWOFACTOR_INFO, m_encryption.encrypt(json.toString())); // &line[aes]
         } catch (CmsEncryptionException e) {
             // shouldn't happen
             throw new RuntimeException(e);

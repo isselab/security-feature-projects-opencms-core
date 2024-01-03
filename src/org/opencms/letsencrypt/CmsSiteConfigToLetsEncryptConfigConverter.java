@@ -274,20 +274,22 @@ public class CmsSiteConfigToLetsEncryptConfigConverter {
     private static SuffixListCache SUFFIX_LIST_CACHE = new SuffixListCache();
 
     /** The configuration. */
-    private CmsLetsEncryptConfiguration m_config;
+    private CmsLetsEncryptConfiguration m_config;  // &line[letsencrypt]
 
     /** The object to which the configuration is sent after it is generated. */
-    private I_CmsLetsEncryptUpdater m_configUpdater;
+    private I_CmsLetsEncryptUpdater m_configUpdater;  // &line[letsencrypt]
 
     /**
      * Creates a new instance.<p>
      *
      * @param config the LetsEncrypt configuration
      */
+    // &begin[letsencrypt]
     public CmsSiteConfigToLetsEncryptConfigConverter(CmsLetsEncryptConfiguration config) {
         m_config = config;
         m_configUpdater = new CmsLetsEncryptUpdater(config);
     }
+    // &end[letsencrypt]
 
     /**
      * Computes the domain information for a single site.<p>

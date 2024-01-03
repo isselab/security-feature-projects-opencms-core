@@ -71,7 +71,7 @@ public class CmsLoginManager {
         private long m_disableTimeStart;
 
         /** The count of the failed attempts. */
-        private int m_invalidLoginCount; // TODO: feature
+        private int m_invalidLoginCount; // &line[invalid_login_count]
 
         /**
          * Creates a new user data instance.<p>
@@ -79,7 +79,7 @@ public class CmsLoginManager {
         protected CmsUserData() {
 
             // a new instance is creted only if there already was one failed attempt
-            m_invalidLoginCount = 1;
+            m_invalidLoginCount = 1; // &line[invalid_login_count]
         }
 
         /**
@@ -87,10 +87,12 @@ public class CmsLoginManager {
          *
          * @return the bad attempt count for this user
          */
+        // &begin[invalid_login_count]
         protected Integer getInvalidLoginCount() {
 
             return new Integer(m_invalidLoginCount);
         }
+        // &end[invalid_login_count]
 
         /**
          * Returns the date this disabled user is released again.<p>
@@ -106,6 +108,7 @@ public class CmsLoginManager {
          * Increases the bad attempt count, disables the data in case the
          * configured threshold is reached.<p>
          */
+        // &begin[invalid_login_count]
         protected void increaseInvalidLoginCount() {
 
             m_invalidLoginCount++;
@@ -117,6 +120,7 @@ public class CmsLoginManager {
                 }
             }
         }
+        // &end[invalid_login_count]
 
         /**
          * Returns <code>true</code> in case this user has been temporarily disabled.<p>
@@ -177,7 +181,7 @@ public class CmsLoginManager {
     protected boolean m_enableSecurity;
 
     /** The number of bad login attempts allowed before an account is temporarily disabled. */
-    protected int m_maxBadAttempts;
+    protected int m_maxBadAttempts; // &line[invalid_login_count]
 
     /** The storage for the bad login attempts. */
     protected Map<String, CmsUserData> m_storage;
@@ -230,7 +234,7 @@ public class CmsLoginManager {
         boolean requireOrgUnit,
         String logoutUri) {
 
-        m_maxBadAttempts = maxBadAttempts;
+        m_maxBadAttempts = maxBadAttempts;  // &line[invalid_login_count]
         if (TEMP_DISABLED_USER == null) {
             TEMP_DISABLED_USER = new Hashtable<String, Set<CmsUserData>>();
         }
@@ -317,6 +321,7 @@ public class CmsLoginManager {
      *
      * @throws CmsAuthentificationException in case the threshold of invalid login attempts has been reached
      */
+    // &begin[invalid_login_count]
     public void checkInvalidLogins(String userName, String remoteAddress) throws CmsAuthentificationException {
 
         if (m_maxBadAttempts < 0) {
@@ -354,6 +359,7 @@ public class CmsLoginManager {
             }
         }
     }
+    // &end[invalid_login_count]
 
     /**
      * Checks if a login is currently allowed.<p>
@@ -423,10 +429,12 @@ public class CmsLoginManager {
      *
      * @return the number of bad login attempts allowed before an account is temporarily disabled
      */
+    // &begin[invalid_login_count]
     public int getMaxBadAttempts() {
 
         return m_maxBadAttempts;
     }
+    // &end[invalid_login_count]
 
     /**
      * Gets the max inactivity time.<p>
@@ -764,7 +772,7 @@ public class CmsLoginManager {
      * @param userName the name of the user
      * @param remoteAddress the remore address (IP) from which the login attempt was made
      */
-    // TODO: Feature
+    // &begin[invalid_login_count]
     protected void addInvalidLogin(String userName, String remoteAddress) {
 
         if (m_maxBadAttempts < 0) {
@@ -784,6 +792,7 @@ public class CmsLoginManager {
             m_storage.put(key, userData);
         }
     }
+    // &end[invalid_login_count]
 
     /**
      * Removes all invalid attempts to login for the given user / IP.<p>
@@ -791,6 +800,7 @@ public class CmsLoginManager {
      * @param userName the name of the user
      * @param remoteAddress the remore address (IP) from which the login attempt was made
      */
+    // &begin[invalid_login_count]
     protected void removeInvalidLogins(String userName, String remoteAddress) {
 
         if (m_maxBadAttempts < 0) {
@@ -802,6 +812,7 @@ public class CmsLoginManager {
         // just remove the user from the storage
         m_storage.remove(key);
     }
+    // &end[invalid_login_count]
 
     /**
      * Helper method to get all the storage keys that match a user's name.<p>

@@ -672,7 +672,7 @@ public class CmsSystemConfiguration extends A_CmsXmlConfiguration {
     private CmsHttpAuthenticationSettings m_httpAuthenticationSettings;
 
     /** The LetsEncrypt configuration. */
-    private CmsLetsEncryptConfiguration m_letsEncryptConfig;
+    private CmsLetsEncryptConfiguration m_letsEncryptConfig; // &line[letsencrypt]
 
     /** The configured locale manager for multi language support. */
     private CmsLocaleManager m_localeManager;
@@ -1372,7 +1372,7 @@ public class CmsSystemConfiguration extends A_CmsXmlConfiguration {
             public void end(String namespace, String name) throws Exception {
 
                 if (m_textEncryptions.get("default") == null) {
-                    CmsAESTextEncryption defaultEncryption = new CmsAESTextEncryption();
+                    CmsAESTextEncryption defaultEncryption = new CmsAESTextEncryption();  // &line[aes]
                     defaultEncryption.setName("default");
                     defaultEncryption.addConfigurationParameter(
                         CmsAESTextEncryption.PARAM_SECRET,
@@ -2091,10 +2091,12 @@ public class CmsSystemConfiguration extends A_CmsXmlConfiguration {
      *
      * @return the LetsEncrypt configuration
      */
+    // &begin[letsencrypt]
     public CmsLetsEncryptConfiguration getLetsEncryptConfig() {
 
         return m_letsEncryptConfig;
     }
+    // &end[letsencrypt]
 
     /**
      * Returns the configured locale manager for multi language support.<p>
@@ -2636,10 +2638,12 @@ public class CmsSystemConfiguration extends A_CmsXmlConfiguration {
      *
      * @param letsEncryptConfig the LetsEncrypt configuration
      */
+    // &begin[letsencrypt]
     public void setLetsEncryptConfig(CmsLetsEncryptConfiguration letsEncryptConfig) {
 
         m_letsEncryptConfig = letsEncryptConfig;
     }
+    // &end[letsencrypt]
 
     /**
      * Sets the locale manager for multi language support.<p>

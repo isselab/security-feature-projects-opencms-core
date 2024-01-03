@@ -154,12 +154,14 @@ public class CmsSiteManager extends A_CmsWorkplaceApp implements I_CmsCRUDApp<Cm
      *
      * @return true if LetsEncrypt updates are configured to be triggered by webserver configuration updates
      */
+    // &begin[letsencrypt]
     public static boolean isLetsEncryptConfiguredForWebserverThread() {
 
         return (OpenCms.getLetsEncryptConfig() != null)
             && OpenCms.getLetsEncryptConfig().isValidAndEnabled()
             && (OpenCms.getLetsEncryptConfig().getTrigger() == Trigger.webserverThread);
     }
+    // &end[letsencrypt]
 
     /**
      * Centers the currently open window.

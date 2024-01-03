@@ -434,6 +434,7 @@ public class CmsSitesConfiguration extends A_CmsXmlConfiguration implements I_Cm
      */
     public synchronized void handleUpdate() throws Exception {
 
+        // &begin[letsencrypt]
         CmsLetsEncryptConfiguration config = OpenCms.getLetsEncryptConfig();
         if ((config != null) && config.isValidAndEnabled() && (config.getTrigger() == Trigger.siteConfig)) {
 
@@ -462,6 +463,7 @@ public class CmsSitesConfiguration extends A_CmsXmlConfiguration implements I_Cm
                 }
             }, 5, TimeUnit.SECONDS);
         }
+        // &end[letsencrypt]
 
     }
 

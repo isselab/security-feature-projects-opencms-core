@@ -342,11 +342,13 @@ public final class OpenCms {
      *
      * @return the LetsEncrypt configuration
      */
+    // &begin[letsencrypt]
     public static CmsLetsEncryptConfiguration getLetsEncryptConfig() {
 
         return OpenCmsCore.getInstance().getLetsEncryptConfig();
 
     }
+    // &end[letsencrypt]
 
     /**
      * Returns the link manager to resolve links in &lt;link&gt; tags.<p>
