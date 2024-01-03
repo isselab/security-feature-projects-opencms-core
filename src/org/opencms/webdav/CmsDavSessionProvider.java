@@ -66,7 +66,8 @@ public class CmsDavSessionProvider implements DavSessionProvider {
         }
         String authHeader = request.getHeader("Authorization");
         I_CmsRepositorySession repoSession = null;
-        String basic = HttpServletRequest.BASIC_AUTH; // TODO: feature
+        // &begin[http_auth]
+        String basic = HttpServletRequest.BASIC_AUTH;
         if ((authHeader != null) && authHeader.toUpperCase().startsWith(basic)) {
             String base64Token = authHeader.substring(basic.length() + 1);
             String token = new String(Base64.decodeBase64(base64Token.getBytes()));
@@ -86,6 +87,7 @@ public class CmsDavSessionProvider implements DavSessionProvider {
         if (repoSession == null) {
             throw new DavException(HttpServletResponse.SC_UNAUTHORIZED);
         }
+        // &end[http_auth]
 
         request.setDavSession(new CmsDavSession(repoSession));
 

@@ -68,7 +68,7 @@ import dev.samstevens.totp.util.Utils;
  * This class can both set up a TOTP second factor for a user, as well as be used to authenticate a user using the verification code generated using their second factor.
  */
 @Critical(secrecy = {"CmsTwoFactorAuthenticationConfig.getSecret():String","CmsSecondFactorInfo.getCode():String","CmsSecondFactorInfo.getSecret():String"})
-public class CmsTwoFactorAuthenticationHandler { // TODO: feature
+public class CmsTwoFactorAuthenticationHandler {
 
     /**
      * The hashing algorithm to use.
