@@ -101,7 +101,7 @@ public class CmsSetPasswordDialog extends CmsChangePasswordDialog {
                         }
                     }
                     m_cms.setPassword(m_user.getName(), password1);
-                    CmsUserLog.logPasswordChange(m_cms, m_user.getName()); // TODO: feature
+                    CmsUserLog.logPasswordChange(m_cms, m_user.getName()); // &line[logging]
                     CmsTokenValidator.clearToken(CmsLoginUI.m_adminCms, m_user);
                     showSetPasswordSuccess();
                 } catch (CmsException e) {

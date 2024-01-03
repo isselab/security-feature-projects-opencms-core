@@ -473,7 +473,7 @@ public class CmsLoginController {
                         "{workplace logout option}",
                         cms.getRequestContext().getRemoteAddress()));
             }
-            CmsUserLog.logLogout(cms);
+            CmsUserLog.logLogout(cms); // &line[logging]
         }
     }
 
@@ -489,7 +489,7 @@ public class CmsLoginController {
     public static void logout(CmsObject cms, HttpServletRequest request, HttpServletResponse response)
     throws IOException {
 
-        CmsUserLog.logLogout(cms);
+        CmsUserLog.logLogout(cms); // &line[logging]
         String loggedInUser = cms.getRequestContext().getCurrentUser().getName();
         HttpSession session = request.getSession(false);
         String logoutUri = OpenCms.getLoginManager().getLogoutUri();
@@ -600,7 +600,7 @@ public class CmsLoginController {
                 CmsMessageContainer message = org.opencms.workplace.Messages.get().container(
                     org.opencms.workplace.Messages.GUI_LOGIN_FAILED_0);
                 displayError(message.key(m_params.getLocale()), true, true);
-                CmsUserLog.logLoginFailure(currentCms, realUser);
+                CmsUserLog.logLoginFailure(currentCms, realUser); // &line[logging]
                 return;
             }
             final CmsUser userNonNull = userObj;
@@ -608,7 +608,7 @@ public class CmsLoginController {
                 boolean locked = null != userObj.getAdditionalInfo().get(KEY_ACCOUNT_LOCKED);
                 if (locked) {
                     displayError(CmsInactiveUserMessages.getLockoutText(A_CmsUI.get().getLocale()), false, false);
-                    CmsUserLog.logLoginFailure(currentCms, realUser);
+                    CmsUserLog.logLoginFailure(currentCms, realUser); // &line[logging]
                     return;
                 }
             }
@@ -649,7 +649,7 @@ public class CmsLoginController {
                 CmsObject loginCms = OpenCms.initCmsObject(currentCms);
                 CmsSecondFactorInfo secondFactorInfo = details.getSecondFactorInfo();
                 loginCms.loginUser(realUser, password, secondFactorInfo);
-                CmsUserLog.logLogin(loginCms, realUser);
+                CmsUserLog.logLogin(loginCms, realUser); // &line[logging]
 
                 if (LOG.isInfoEnabled()) {
                     CmsRequestContext context = loginCms.getRequestContext();
@@ -850,14 +850,14 @@ public class CmsLoginController {
                     org.opencms.workplace.Messages.GUI_LOGIN_FAILED_0);
                 LOG.warn(e.getLocalizedMessage(), e);
                 displayError(message.key(m_params.getLocale()), true, true);
-                CmsUserLog.logLoginFailure(currentCms, user);
+                CmsUserLog.logLoginFailure(currentCms, user); // &line[logging]
                 return;
             }
         }
 
         if (e instanceof CmsException) {
             CmsJspLoginBean.logLoginException(currentCms.getRequestContext(), user, (CmsException)e);
-            CmsUserLog.logLoginFailure(currentCms, user);
+            CmsUserLog.logLoginFailure(currentCms, user); // &line[logging]
         } else {
             LOG.error(e.getLocalizedMessage(), e);
         }

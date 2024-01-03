@@ -208,7 +208,7 @@ public abstract class A_CmsEditUserDialog extends CmsWidgetDialog {
             } else if (CmsStringUtil.isNotEmpty(m_pwdInfo.getNewPwd())) {
                 m_pwdInfo.validate();
                 getCms().setPassword(m_user.getName(), m_pwdInfo.getNewPwd());
-                CmsUserLog.logPasswordChange(getCms(), m_user.getName());
+                CmsUserLog.logPasswordChange(getCms(), m_user.getName());  // &line[logging]
             }
 
             // write the edited user

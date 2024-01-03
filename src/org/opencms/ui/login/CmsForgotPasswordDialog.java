@@ -139,7 +139,7 @@ public class CmsForgotPasswordDialog extends VerticalLayout implements I_CmsHasB
                 String selectedOu = getSelectedOrgUnit();
                 String fullName = CmsStringUtil.joinPaths(selectedOu, m_userField.getValue());
                 if (sendPasswordResetLink(CmsLoginUI.m_adminCms, fullName, m_emailField.getValue())) {
-                    CmsUserLog.logPasswordResetRequest(A_CmsUI.getCmsObject(), fullName);
+                    CmsUserLog.logPasswordResetRequest(A_CmsUI.getCmsObject(), fullName);  // &line[logging]
                     // Since we need to actually go to a different page here, we can't use a Vaadin notification,
                     // because we don't get notified on the server when the user clicks it.
                     CmsVaadinUtils.showAlert(

@@ -656,7 +656,7 @@ public class CmsSessionManager {
         cms.getRequestContext().setCurrentProject(userProject);
         cms.getRequestContext().setOuFqn(user.getOuFqn());
         USERSWITCH.info("User '" + oldUser + "' switched to user '" + user.getName() + "'");
-        CmsUserLog.logSwitchUser(cms, user.getName());
+        CmsUserLog.logSwitchUser(cms, user.getName());  // &line[logging]
         String directEditTarget = CmsLoginHelper.getDirectEditPath(cms, new CmsUserSettings(user), false);
         return directEditTarget != null
         ? OpenCms.getLinkManager().substituteLink(cms, directEditTarget, userSiteRoot)

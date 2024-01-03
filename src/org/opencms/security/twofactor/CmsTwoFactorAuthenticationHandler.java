@@ -282,11 +282,11 @@ public class CmsTwoFactorAuthenticationHandler { // TODO: feature
         if ((info1 == null) && (info2 == null)) {
             return;
         } else if ((info1 == null) && (info2 != null)) {
-            CmsUserLog.logSecondFactorAdded(requestContext, oldUser.getName());
+            CmsUserLog.logSecondFactorAdded(requestContext, oldUser.getName());  // &line[logging]
         } else if ((info1 != null) && (info2 == null)) {
-            CmsUserLog.logSecondFactorReset(requestContext, oldUser.getName());
+            CmsUserLog.logSecondFactorReset(requestContext, oldUser.getName());  // &line[logging]
         } else if (!info1.equals(info2)) {
-            CmsUserLog.logSecondFactorInfoModified(requestContext, oldUser.getName());
+            CmsUserLog.logSecondFactorInfoModified(requestContext, oldUser.getName());  // &line[logging]
         }
 
     }

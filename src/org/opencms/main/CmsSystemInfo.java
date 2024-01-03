@@ -184,7 +184,7 @@ public class CmsSystemInfo {
     private int m_historyVersionsAfterDeletion;
 
     /** The HTTP basic authentication settings. */
-    private CmsHttpAuthenticationSettings m_httpAuthenticationSettings;
+    private CmsHttpAuthenticationSettings m_httpAuthenticationSettings; // &line[http_auth]
 
     /** The settings for the internal OpenCms email service. */
     private CmsMailSettings m_mailSettings;
@@ -443,10 +443,12 @@ public class CmsSystemInfo {
      *
      * @return the HTTP authentication settings
      */
+    // &begin[http_auth]
     public CmsHttpAuthenticationSettings getHttpAuthenticationSettings() {
 
         return m_httpAuthenticationSettings;
     }
+    // &end[http_auth]
 
     /**
      * Returns the filename of the log file (in the "real" file system).<p>
@@ -817,10 +819,12 @@ public class CmsSystemInfo {
      *
      * @param httpAuthenticationSettings the HTTP authentication settings to set
      */
+    // &begin[http_auth]
     protected void setHttpAuthenticationSettings(CmsHttpAuthenticationSettings httpAuthenticationSettings) {
 
         m_httpAuthenticationSettings = httpAuthenticationSettings;
     }
+    // &end[http_auth]
 
     /**
      * Sets the settings for the internal OpenCms email service.<p>

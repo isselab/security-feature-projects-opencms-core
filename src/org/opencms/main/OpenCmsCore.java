@@ -228,7 +228,7 @@ public final class OpenCmsCore {
     private Map<String, I_CmsApiAuthorizationHandler> m_apiAuthorizations;
 
     /** The configured authorization handler. */
-    private I_CmsAuthorizationHandler m_authorizationHandler;
+    private I_CmsAuthorizationHandler m_authorizationHandler;  // &line[authorization]
 
     /** Admin CMS object. */
     private CmsObject m_configAdminCms;
@@ -2813,7 +2813,7 @@ public final class OpenCmsCore {
             // access error - display login dialog
             if (canWrite) {
                 try {
-                    m_authorizationHandler.requestAuthorization(req, res, getLoginFormURL(req, res));
+                    m_authorizationHandler.requestAuthorization(req, res, getLoginFormURL(req, res));  // &line[authentication]
                 } catch (IOException ioe) {
                     LOG.debug("Error calling authorization handler.", ioe);
                 }

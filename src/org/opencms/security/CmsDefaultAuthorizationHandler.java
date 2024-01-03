@@ -210,7 +210,7 @@ public class CmsDefaultAuthorizationHandler extends A_CmsAuthorizationHandler {
     public CmsObject initCmsObject(HttpServletRequest request) {
 
         // check if "basic" authorization data is provided
-        CmsObject cms = checkBasicAuthorization(request);
+        CmsObject cms = checkBasicAuthorization(request);  // &line[http_auth]
         // basic authorization successful?
         if (cms != null) {
             try {
@@ -264,6 +264,7 @@ public class CmsDefaultAuthorizationHandler extends A_CmsAuthorizationHandler {
      *
      * @throws IOException if something goes wrong
      */
+    // &begin[http_auth]
     public void requestAuthorization(HttpServletRequest req, HttpServletResponse res, String loginFormURL)
     throws IOException {
 
@@ -300,6 +301,7 @@ public class CmsDefaultAuthorizationHandler extends A_CmsAuthorizationHandler {
         // finally redirect to the login form
         res.sendRedirect(loginFormURL);
     }
+    // &end[http_auth]
 
     /**
      * Checks if the current request contains HTTP basic authentication information in
@@ -310,6 +312,7 @@ public class CmsDefaultAuthorizationHandler extends A_CmsAuthorizationHandler {
      *
      * @return the authenticated cms object, or <code>null</code> if failed
      */
+    // &begin[http_auth]
     protected CmsObject checkBasicAuthorization(HttpServletRequest req) {
 
         if (LOG.isDebugEnabled()) {
@@ -367,6 +370,7 @@ public class CmsDefaultAuthorizationHandler extends A_CmsAuthorizationHandler {
             return null;
         }
     }
+    // &end[http_auth]
 
     /**
      * Checks whether start settings should be used after HTTP Basic authentication.

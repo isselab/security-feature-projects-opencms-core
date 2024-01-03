@@ -331,7 +331,7 @@ public class CmsChangePasswordDialog extends CmsBasicDialog {
 
                     try {
                         m_cms.setPassword(m_user.getName(), oldPassword, secondFactor, password1);
-                        CmsUserLog.logPasswordChangeForRequestedReset(A_CmsUI.getCmsObject(), m_user.getName());
+                        CmsUserLog.logPasswordChangeForRequestedReset(A_CmsUI.getCmsObject(), m_user.getName()); // &line[logging]
                         closeOrRedirectToLoginForm();
                     } catch (CmsException e) {
                         m_form.setErrorOldPassword(

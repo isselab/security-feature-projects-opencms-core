@@ -319,7 +319,7 @@ public class CmsJspLoginBean extends CmsJspActionElement {
                         getRequestContext().addSiteRoot(getRequestContext().getUri()),
                         getRequestContext().getRemoteAddress()));
             }
-            CmsUserLog.logLogin(getCmsObject(), userName);
+            CmsUserLog.logLogin(getCmsObject(), userName);  // &line[logging]
         } else {
             // login was not successful
             if (session != null) {
@@ -327,7 +327,7 @@ public class CmsJspLoginBean extends CmsJspActionElement {
             }
             CmsException currentLoginException = m_loginException;
             logLoginException(getRequestContext(), userName, currentLoginException);
-            CmsUserLog.logLoginFailure(getCmsObject(), userName);
+            CmsUserLog.logLoginFailure(getCmsObject(), userName);  // &line[logging]
         }
     }
 
@@ -393,7 +393,7 @@ public class CmsJspLoginBean extends CmsJspActionElement {
                     getRequestContext().addSiteRoot(getRequestContext().getUri()),
                     getRequestContext().getRemoteAddress()));
         }
-        CmsUserLog.logLogout(getCmsObject());
+        CmsUserLog.logLogout(getCmsObject());  // &line[logging]
         getResponse().sendRedirect(getFormLink());
     }
 

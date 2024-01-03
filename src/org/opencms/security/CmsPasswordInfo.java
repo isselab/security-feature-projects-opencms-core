@@ -95,7 +95,7 @@ public class CmsPasswordInfo {
         }
         validate();
         m_cms.setPassword(m_userName, getCurrentPwd(), getNewPwd());
-        CmsUserLog.logPasswordChange(m_cms, m_userName);
+        CmsUserLog.logPasswordChange(m_cms, m_userName);  // &line[logging]
     }
 
     /**

@@ -1502,7 +1502,7 @@ public class CmsUserEditDialog extends CmsBasicDialog implements I_CmsPasswordFe
         if (!CmsStringUtil.isEmptyOrWhitespaceOnly(m_pw.getPassword1())) {
             if (isPasswordValid()) {
                 m_cms.setPassword(m_user.getName(), m_pw.getPassword1());
-                CmsUserLog.logPasswordChange(m_cms, m_user.getName());  // TODO: feature
+                CmsUserLog.logPasswordChange(m_cms, m_user.getName());  // &line[logging]
             }
         }
 
@@ -1588,7 +1588,7 @@ public class CmsUserEditDialog extends CmsBasicDialog implements I_CmsPasswordFe
     private void updateUser(CmsUser user) {
 
         setUserPasswordStatus(user, m_forceResetPassword.getValue().booleanValue());
-        CmsUserLog.logSetForceResetPassword(A_CmsUI.getCmsObject(), user.getName());
+        CmsUserLog.logSetForceResetPassword(A_CmsUI.getCmsObject(), user.getName()); // &line[logging]
         user.setDescription(m_description.getValue());
         user.setManaged(!m_selfmanagement.getValue().booleanValue());
         if (m_resetTwoFactorAuthentication.getValue().booleanValue()) {
