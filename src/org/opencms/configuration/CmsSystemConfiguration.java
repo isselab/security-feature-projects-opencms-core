@@ -242,7 +242,7 @@ public class CmsSystemConfiguration extends A_CmsXmlConfiguration {
     public static final String N_ADE_CACHE = "ade-cache";
 
     /** Node name for a single API authorization handler. */
-    public static final String N_API_AUTHORIZATION = "api-authorization";
+    public static final String N_API_AUTHORIZATION = "api-authorization"; // TODO: feature?
 
     /** Node name for the group of API authorization handlers. */
     public static final String N_API_AUTHORIZATIONS = "api-authorizations";

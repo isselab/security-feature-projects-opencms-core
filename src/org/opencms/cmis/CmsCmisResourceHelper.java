@@ -243,6 +243,7 @@ public class CmsCmisResourceHelper implements I_CmsCmisObjectHelper {
      * @return the ACL for the resource
      * @throws CmsException if something goes wrong
      */
+    // &begin[access_control]
     protected Acl collectAcl(CmsObject cms, CmsResource resource, boolean onlyBasic) throws CmsException {
 
         AccessControlListImpl cmisAcl = new AccessControlListImpl();
@@ -264,6 +265,7 @@ public class CmsCmisResourceHelper implements I_CmsCmisObjectHelper {
         cmisAcl.setExact(Boolean.FALSE);
         return cmisAcl;
     }
+    // &end[access_control]
 
     /**
      * Compiles the allowable actions for a file or folder.

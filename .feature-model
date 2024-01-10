@@ -6,13 +6,15 @@ opencms
                 aes
         authentication
             twofactor
-                user_policy
             password
             http_auth
+            invalid_login_count
+            api_authorization
         access_control
             permissions
             roles
             organizational_unit
+            json_property_filter
         validation
             xml_content
             upload

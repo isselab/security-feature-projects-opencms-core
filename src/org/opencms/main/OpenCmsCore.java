@@ -348,13 +348,13 @@ public final class OpenCmsCore {
     private CmsTemplateContextManager m_templateContextManager;
 
     /** The text encryptions. */
-    private LinkedHashMap<String, I_CmsTextEncryption> m_textEncryptions;
+    private LinkedHashMap<String, I_CmsTextEncryption> m_textEncryptions;  // &line[text_encryption]
 
     /** The thread store. */
     private CmsThreadStore m_threadStore;
 
     /** The 2FA handler. */
-    private CmsTwoFactorAuthenticationHandler m_twoFactorAuthenticationHandler;
+    private CmsTwoFactorAuthenticationHandler m_twoFactorAuthenticationHandler;  // &line[twofactor]
 
     /** The user data request manager. */
     private CmsUserDataRequestManager m_userDataRequestManager;
@@ -1842,9 +1842,11 @@ public final class OpenCmsCore {
                 m_textEncryptions.put(encryption.getName(), encryption);
             }
 
+            // &begin[twofactor]
             m_twoFactorAuthenticationHandler = new CmsTwoFactorAuthenticationHandler(
                 OpenCms.initCmsObject(adminCms),
                 systemConfiguration.getTwoFactorAuthenticationConfig());
+            // &end[twofactor]
 
         } catch (CmsException e) {
             throw new CmsInitException(Messages.get().container(Messages.ERR_CRITICAL_INIT_MANAGERS_0), e);

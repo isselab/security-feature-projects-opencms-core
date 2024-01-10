@@ -476,6 +476,7 @@ public class CmsUserEditDialog extends CmsBasicDialog implements I_CmsPasswordFe
                 m_generateButton.setVisible(false);
             }
 
+            // &begin[twofactor]
             CmsTwoFactorAuthenticationHandler twoFactorHandler = OpenCms.getTwoFactorAuthenticationHandler();
             if (twoFactorHandler.needsTwoFactorAuthentication(m_user)) {
                 m_twoFactorBox.setVisible(true);
@@ -491,6 +492,7 @@ public class CmsUserEditDialog extends CmsBasicDialog implements I_CmsPasswordFe
             } else {
                 m_twoFactorBox.setVisible(false);
             }
+            // &end[twofactor]
 
         } catch (CmsException e) {
             LOG.error("Can't read user", e);

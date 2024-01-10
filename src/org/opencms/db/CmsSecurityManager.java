@@ -1937,6 +1937,7 @@ public final class CmsSecurityManager {
      *
      * @throws CmsException if something goes wrong
      */
+    // &begin[access_control]
     public List<CmsAccessControlEntry> getAccessControlEntries(
         CmsRequestContext context,
         CmsResource resource,
@@ -1957,6 +1958,7 @@ public final class CmsSecurityManager {
         }
         return result;
     }
+    // &end[access_control]
 
     /**
      * Returns the access control list (summarized access control entries) of a given resource.<p>

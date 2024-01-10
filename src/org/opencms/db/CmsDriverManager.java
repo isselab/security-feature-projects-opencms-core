@@ -3667,6 +3667,7 @@ public final class CmsDriverManager implements I_CmsEventListener {
      *
      * @throws CmsException if something goes wrong
      */
+    // &begin[access_control]
     public List<CmsAccessControlEntry> getAccessControlEntries(
         CmsDbContext dbc,
         CmsResource resource,
@@ -3713,6 +3714,7 @@ public final class CmsDriverManager implements I_CmsEventListener {
 
         return ace;
     }
+    // &end[access_control]
 
     /**
      * Returns the full access control list of a given resource.<p>
@@ -5840,7 +5842,8 @@ public final class CmsDriverManager implements I_CmsEventListener {
         }
 
         if (mode == LoginUserMode.standard) {
-            CmsTwoFactorAuthenticationHandler handler = OpenCms.getTwoFactorAuthenticationHandler(); // TODO: feature
+            // &begin[twofactor]
+            CmsTwoFactorAuthenticationHandler handler = OpenCms.getTwoFactorAuthenticationHandler();
             if (handler.needsTwoFactorAuthentication(newUser)) {
                 // note that password check must already have been successful at this stage
 
@@ -5880,6 +5883,7 @@ public final class CmsDriverManager implements I_CmsEventListener {
                     }
                 }
             }
+            // &end[twofactor]
         }
         if (dbc.currentUser().isGuestUser()) {
             // check if this account is temporarily disabled because of too many invalid login attempts
@@ -8859,6 +8863,7 @@ public final class CmsDriverManager implements I_CmsEventListener {
                 throw new CmsDataAccessException(Messages.get().container(Messages.ERR_RESET_PASSWORD_1, username));
             }
 
+            // &begin[twofactor]
             CmsTwoFactorAuthenticationHandler twoFactorHandler = OpenCms.getTwoFactorAuthenticationHandler();
             if (twoFactorHandler.needsTwoFactorAuthentication(user) && twoFactorHandler.hasSecondFactor(user)) {
                 if (!twoFactorHandler.verifySecondFactor(user, secondFactor)) {
@@ -8867,6 +8872,7 @@ public final class CmsDriverManager implements I_CmsEventListener {
                         new RuntimeException("Verification code mismatch"));
                 }
             }
+            // &end[twofactor]
 
             getUserDriver(dbc).writePassword(dbc, username, oldPassword, newPassword);
             user.getAdditionalInfo().put(

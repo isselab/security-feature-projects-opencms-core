@@ -219,6 +219,7 @@ public class CmsChangePasswordDialog extends CmsBasicDialog {
      *
      * @param handler the handler to call with the verification code data
      */
+    // &begin[twofactor]
     protected void maybeCheckSecondFactor(Consumer<CmsSecondFactorInfo> handler) {
 
         CmsTwoFactorAuthenticationHandler twoFactorHandler = OpenCms.getTwoFactorAuthenticationHandler();
@@ -240,6 +241,7 @@ public class CmsChangePasswordDialog extends CmsBasicDialog {
             window.setContent(dialog);
         }
     }
+    // &end[twofactor]
 
     /**
      * Checks whether the passwords match.<p>
