@@ -245,7 +245,7 @@ public class CmsUgcSession implements I_CmsSessionDestroyHandler {
     throws CmsUgcException {
 
         CmsResource result = null;
-        CmsUgcSessionSecurityUtil.checkCreateUpload(m_cms, m_configuration, rawFileName, content.length);
+        CmsUgcSessionSecurityUtil.checkCreateUpload(m_cms, m_configuration, rawFileName, content.length);  // &line[upload]
         String baseName = rawFileName;
 
         // if the given name is a path, make sure we only get the last segment
@@ -304,7 +304,7 @@ public class CmsUgcSession implements I_CmsSessionDestroyHandler {
         checkNotFinished();
         checkEditResourceNotSet();
 
-        CmsUgcSessionSecurityUtil.checkCreateContent(m_cms, m_configuration);
+        CmsUgcSessionSecurityUtil.checkCreateContent(m_cms, m_configuration);  // &line[xml_content]
         try {
             I_CmsResourceType type = OpenCms.getResourceManager().getResourceType(m_configuration.getResourceType());
             m_editResource = m_cms.createResource(getNewContentName(), type);

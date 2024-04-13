@@ -156,6 +156,7 @@ public class CmsJsonResourceHandler implements I_CmsResourceInit, I_CmsNeedsAdmi
      *
      * @return the initialized CmsObject
      */
+    // &begin[authentication]
     private static CmsObject authorize(
         CmsObject adminCms,
         CmsObject defaultCms,
@@ -178,6 +179,7 @@ public class CmsJsonResourceHandler implements I_CmsResourceInit, I_CmsNeedsAdmi
                     return null;
                 }
             } else {
+                // &begin[api_authorization]
                 I_CmsApiAuthorizationHandler handler = OpenCms.getApiAuthorization(token);
                 if (handler == null) {
                     LOG.error("Could not find API authorization handler " + token);
@@ -194,11 +196,13 @@ public class CmsJsonResourceHandler implements I_CmsResourceInit, I_CmsNeedsAdmi
                         return null;
                     }
                 }
+                // &end[api_authorization]
             }
         }
         LOG.info("Authentication unsusccessful");
         return null;
     }
+    // &end[authentication]
 
     /**
      * Gets the list of sub-handlers, sorted by ascending order.
@@ -398,7 +402,7 @@ public class CmsJsonResourceHandler implements I_CmsResourceInit, I_CmsNeedsAdmi
         CmsJsonAccessPolicy result = (CmsJsonAccessPolicy)cache.loadVfsObject(cms, accessConfigPath, obj -> {
             try {
                 CmsFile file = cms.readFile(accessConfigPath);
-                CmsJsonAccessPolicy policy = CmsJsonAccessPolicy.parse(file.getContents());
+                CmsJsonAccessPolicy policy = CmsJsonAccessPolicy.parse(file.getContents()); // &line[json_property_filter]
                 return policy;
             } catch (Exception e) {
                 // If access policy is configured, but can't be read, disable everything

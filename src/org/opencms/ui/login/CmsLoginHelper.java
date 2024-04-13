@@ -415,7 +415,7 @@ public class CmsLoginHelper extends CmsJspLoginBean {
             String encryptedRequestedResource = request.getParameter(
                 CmsDefaultAuthorizationHandler.PARAM_ENCRYPTED_REQUESTED_RESOURCE);
             try {
-                String decryptedResource = OpenCms.getDefaultTextEncryption().decrypt(encryptedRequestedResource);
+                String decryptedResource = OpenCms.getDefaultTextEncryption().decrypt(encryptedRequestedResource); // &line[text_encryption]
                 if (requestedResource.equals(decryptedResource)) {
                     validRequestedResource = true;
                 }

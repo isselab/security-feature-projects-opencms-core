@@ -122,7 +122,6 @@ import org.gravity.security.annotations.requirements.Integrity;
  *
  * @since 6.0.0
  */
-//TODO: feature
 @Critical(integrity = {"CmsDriverManager.setPassword(CmsDbContext,String,String):void", "CmsDriverManager.resetPassword(CmsDbContext,String,String,CmsSecondFactorInfo,String):void"})
 public final class CmsSecurityManager {
 
@@ -415,6 +414,7 @@ public final class CmsSecurityManager {
      *
      * @throws CmsRoleViolationException if the user does not have the required role permissions
      */
+    // &begin[roles]
     public void checkManagerOfProjectRole(CmsDbContext dbc, CmsProject project) throws CmsRoleViolationException {
 
         boolean hasRole = false;
@@ -440,6 +440,7 @@ public final class CmsSecurityManager {
                     dbc.currentProject().getName()));
         }
     }
+    // &end[roles]
 
     /**
      * Checks if the project in the given database context is not the "Online" project,
@@ -478,6 +479,7 @@ public final class CmsSecurityManager {
      *
      * @see #checkPermissions(CmsRequestContext, CmsResource, CmsPermissionSet, I_CmsPermissionHandler.CmsPermissionCheckResult)
      */
+    // &begin[permissions]
     public void checkPermissions(
         CmsRequestContext context,
         CmsResource resource,
@@ -494,6 +496,7 @@ public final class CmsSecurityManager {
             dbc.clear();
         }
     }
+    // &end[permissions]
 
     /**
      * Checks if the current user has the permissions to publish the given publish list
@@ -507,6 +510,7 @@ public final class CmsSecurityManager {
      *         whose parent folder is new or deleted in the offline project,
      *         or if the current user has no management access to the current project
      */
+    // &begin[permissions]
     public void checkPublishPermissions(CmsDbContext dbc, CmsPublishList publishList)
     throws CmsException, CmsMultiException {
 
@@ -580,6 +584,7 @@ public final class CmsSecurityManager {
         }
         // no issues have been found , permissions are granted
     }
+    // &end[permissions]
 
     /**
      * Checks if the user of the current database context has permissions to impersonate the given role
@@ -595,6 +600,7 @@ public final class CmsSecurityManager {
      *
      * @see org.opencms.security.CmsRoleManager#checkRole(CmsObject, CmsRole)
      */
+    // &begin[roles]
     public void checkRole(CmsDbContext dbc, CmsRole role) throws CmsRoleViolationException {
 
         if (!hasRole(dbc, dbc.currentUser(), role)) {
@@ -605,6 +611,7 @@ public final class CmsSecurityManager {
             }
         }
     }
+    // &end[roles]
 
     /**
      * Checks if the user of the current context has permissions to impersonate the given role.<p>
@@ -617,6 +624,7 @@ public final class CmsSecurityManager {
      *
      * @throws CmsRoleViolationException if the user does not have the required role permissions
      */
+    // &begin[roles]
     public void checkRole(CmsRequestContext context, CmsRole role) throws CmsRoleViolationException {
 
         CmsDbContext dbc = m_dbContextFactory.getDbContext(context);
@@ -626,6 +634,7 @@ public final class CmsSecurityManager {
             dbc.clear();
         }
     }
+    // &end[roles]
 
     /**
      * Checks if the user of the current database context has permissions to impersonate the given role
@@ -639,6 +648,7 @@ public final class CmsSecurityManager {
      *
      * @see org.opencms.security.CmsRoleManager#checkRole(CmsObject, CmsRole)
      */
+    // &begin[roles]
     public void checkRoleForResource(CmsDbContext dbc, CmsRole role, CmsResource resource)
     throws CmsRoleViolationException {
 
@@ -646,6 +656,7 @@ public final class CmsSecurityManager {
             throw role.createRoleViolationExceptionForResource(dbc.getRequestContext(), resource);
         }
     }
+    // &end[roles]
 
     /**
      * Checks if the user of the current context has permissions to impersonate the given role
@@ -657,6 +668,7 @@ public final class CmsSecurityManager {
      *
      * @throws CmsRoleViolationException if the user does not have the required role permissions
      */
+    // &begin[roles]
     public void checkRoleForResource(CmsRequestContext context, CmsRole role, CmsResource resource)
     throws CmsRoleViolationException {
 
@@ -667,6 +679,7 @@ public final class CmsSecurityManager {
             dbc.clear();
         }
     }
+    // &begin[roles]
 
     /**
      * Changes the resource flags of a resource.<p>
@@ -3102,6 +3115,7 @@ public final class CmsSecurityManager {
      *
      * @return <code>true</code> if the given user has the given role in the given organizational unit
      */
+    // &begin[roles]
     public boolean hasRole(CmsDbContext dbc, CmsUser user, CmsRole role) {
 
         // try to read from cache
@@ -3159,6 +3173,7 @@ public final class CmsSecurityManager {
         OpenCms.getMemoryMonitor().getGroupListCache().setHasRole(user, key, result);
         return result.booleanValue();
     }
+    // &end[roles]
 
     /**
      * Checks if the given user has the given role in the given organizational unit.<p>
@@ -3172,6 +3187,7 @@ public final class CmsSecurityManager {
      *
      * @return <code>true</code> if the given user has the given role in the given organizational unit
      */
+    // &begin[roles]
     public boolean hasRole(CmsRequestContext context, CmsUser user, CmsRole role) {
 
         CmsDbContext dbc = m_dbContextFactory.getDbContext(context);
@@ -3183,6 +3199,7 @@ public final class CmsSecurityManager {
         }
         return result;
     }
+    // &end[roles]
 
     /**
      * Checks if the given user has the given role for the given resource.<p>
@@ -3194,6 +3211,7 @@ public final class CmsSecurityManager {
      *
      * @return <code>true</code> if the given user has the given role for the given resource
      */
+    // &begin[roles]
     public boolean hasRoleForResource(CmsDbContext dbc, CmsUser user, CmsRole role, CmsResource resource) {
 
         // guest user has no role
@@ -3277,6 +3295,7 @@ public final class CmsSecurityManager {
         OpenCms.getMemoryMonitor().cacheRole(key, result.booleanValue());
         return result.booleanValue();
     }
+    // &end[roles]
 
     /**
      * Checks if the given user has the given role for the given resource.<p>
@@ -3288,6 +3307,7 @@ public final class CmsSecurityManager {
      *
      * @return <code>true</code> if the given user has the given role for the given resource
      */
+    // &begin[roles]
     public boolean hasRoleForResource(CmsRequestContext context, CmsUser user, CmsRole role, CmsResource resource) {
 
         CmsDbContext dbc = m_dbContextFactory.getDbContext(context);
@@ -3299,6 +3319,7 @@ public final class CmsSecurityManager {
         }
         return result;
     }
+    // &end[roles]
 
     /**
      * Writes a list of access control entries as new access control entries of a given resource.<p>
@@ -7176,6 +7197,7 @@ public final class CmsSecurityManager {
      *
      * @see #hasPermissions(CmsRequestContext, CmsResource, CmsPermissionSet, boolean, CmsResourceFilter)
      */
+    // &begin[permissions]
     protected void checkPermissions(
         CmsDbContext dbc,
         CmsResource resource,
@@ -7195,6 +7217,7 @@ public final class CmsSecurityManager {
             checkPermissions(dbc.getRequestContext(), resource, requiredPermissions, permissions);
         }
     }
+    // &end[permissions]
 
     /**
      * Performs a blocking permission check on a resource.<p>
@@ -7213,6 +7236,7 @@ public final class CmsSecurityManager {
      *
      * @see #hasPermissions(CmsRequestContext, CmsResource, CmsPermissionSet, boolean, CmsResourceFilter)
      */
+    // &begin[permissions]
     protected void checkPermissions(
         CmsDbContext dbc,
         CmsResource resource,
@@ -7232,6 +7256,7 @@ public final class CmsSecurityManager {
             checkPermissions(dbc.getRequestContext(), resource, requiredPermissions, permissions);
         }
     }
+    // &end[permissions]
 
     /**
      * Applies the permission check result of a previous call
@@ -7246,6 +7271,7 @@ public final class CmsSecurityManager {
      * @throws CmsLockException if the lock status is not as required
      * @throws CmsVfsResourceNotFoundException if the required resource has been filtered
      */
+    // &begin[permissions]
     protected void checkPermissions(
         CmsRequestContext context,
         CmsResource resource,
@@ -7272,6 +7298,7 @@ public final class CmsSecurityManager {
                     context.getCurrentUser().getName()));
         }
     }
+    // &end[permissions]
 
     /**
      * Checks that the current user has enough permissions to modify the given user.<p>
@@ -7283,7 +7310,7 @@ public final class CmsSecurityManager {
      * @throws CmsDataAccessException if something goes wrong accessing the database
      * @throws CmsRoleViolationException if the user has not the needed permissions
      */
-    // TODO: Feature
+    // &begin[roles]
     protected void checkRoleForUserModification(CmsDbContext dbc, String username, CmsRole role)
     throws CmsDataAccessException, CmsRoleViolationException {
 
@@ -7305,6 +7332,7 @@ public final class CmsSecurityManager {
         }
 
     }
+    // &end[roles]
 
     /**
      * Checks if the given resource contains a resource that has a system lock.<p>

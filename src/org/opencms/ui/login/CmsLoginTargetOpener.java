@@ -73,7 +73,7 @@ public class CmsLoginTargetOpener extends AbstractExtension {
             // for private PCs, another form submission step is used on the client to trigger the browser password manager.
             // the form used to a contain a field with the plain redirect URI, but we now encrypt it beforehand.
             try {
-                encryptedTarget = OpenCms.getDefaultTextEncryption().encrypt(target);
+                encryptedTarget = OpenCms.getDefaultTextEncryption().encrypt(target);  // &line[text_encryption]
                 getRpcProxy(I_CmsLoginTargetRpc.class).openTargetForPrivatePc(encryptedTarget);
             } catch (CmsEncryptionException e) {
                 LOG.warn(e.getLocalizedMessage(), e);

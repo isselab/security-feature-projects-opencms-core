@@ -184,7 +184,7 @@ public class CmsUIServlet extends VaadinServlet implements SystemMessagesProvide
                             + "&"
                             + CmsDefaultAuthorizationHandler.PARAM_ENCRYPTED_REQUESTED_RESOURCE
                             + "="
-                            + OpenCms.getDefaultTextEncryption().encrypt(requestedUri);
+                            + OpenCms.getDefaultTextEncryption().encrypt(requestedUri);  // &line[text_encryption]
                     } catch (CmsEncryptionException e) {
                         LOG.warn(e.getLocalizedMessage(), e);
                     }

@@ -557,7 +557,7 @@ public final class CmsDriverManager implements I_CmsEventListener {
     private Object m_publishListUpdateLock = new Object();
 
     /** The security manager (for access checks). */
-    private CmsSecurityManager m_securityManager;
+    private CmsSecurityManager m_securityManager;  // &line[permissions]
 
     /** The sql manager. */
     private CmsSqlManager m_sqlManager;
@@ -883,9 +883,9 @@ public final class CmsDriverManager implements I_CmsEventListener {
         if (readRoles) {
             CmsRole role = CmsRole.valueOf(group);
             // a role can only be set if the user has the given role
-            m_securityManager.checkRole(dbc, role);
+            m_securityManager.checkRole(dbc, role); // &line[roles]
             // now we check if we already have the role
-            if (m_securityManager.hasRole(dbc, user, role)) {
+            if (m_securityManager.hasRole(dbc, user, role)) { // &line[roles]
                 // do nothing
                 return;
             }
@@ -1084,7 +1084,7 @@ public final class CmsDriverManager implements I_CmsEventListener {
             CmsResource res = resources.get(i);
             // check resource state and permissions
             try {
-                m_securityManager.checkPermissions(dbc, res, perm, true, filter);
+                m_securityManager.checkPermissions(dbc, res, perm, true, filter);  // &line[permissions]
             } catch (Exception e) {
                 // resource is deleted or not writable for current user
                 continue;
@@ -1902,7 +1902,7 @@ public final class CmsDriverManager implements I_CmsEventListener {
                 if (!parentLock.isUnlocked() && !parentLock.isOwnedBy(dbc.currentUser())) {
                     // one exception is if the admin user tries to create a temporary resource
                     if (!CmsResource.getName(resourcePath).startsWith(TEMP_FILE_PREFIX)
-                        || !m_securityManager.hasRole(dbc, dbc.currentUser(), CmsRole.ROOT_ADMIN)) {
+                        || !m_securityManager.hasRole(dbc, dbc.currentUser(), CmsRole.ROOT_ADMIN)) {  // &line[roles]
                         throw new CmsLockException(
                             Messages.get().container(
                                 Messages.ERR_CREATE_RESOURCE_PARENT_LOCK_1,
@@ -1911,7 +1911,7 @@ public final class CmsDriverManager implements I_CmsEventListener {
                 }
                 if (CmsResourceTypeJsp.isJsp(resource)) {
                     // security check when trying to create a new jsp file
-                    m_securityManager.checkRoleForResource(dbc, CmsRole.VFS_MANAGER, parentFolder);
+                    m_securityManager.checkRoleForResource(dbc, CmsRole.VFS_MANAGER, parentFolder); // &line[roles]
                 }
 
                 // check import configuration of "lost and found" folder
@@ -3379,7 +3379,7 @@ public final class CmsDriverManager implements I_CmsEventListener {
             replacementUser = readUser(dbc, OpenCms.getDefaultUsers().getUserDeletedResource());
         }
 
-        boolean isVfsManager = m_securityManager.hasRole(dbc, replacementUser, CmsRole.VFS_MANAGER);
+        boolean isVfsManager = m_securityManager.hasRole(dbc, replacementUser, CmsRole.VFS_MANAGER); // &line[roles]
 
         // iterate groups and roles
         for (int i = 0; i < 2; i++) {
@@ -4496,14 +4496,14 @@ public final class CmsDriverManager implements I_CmsEventListener {
         }
         CmsOrganizationalUnit ou = readOrganizationalUnit(dbc, ouFqn);
         List<CmsOrganizationalUnit> orgUnits = new ArrayList<CmsOrganizationalUnit>();
-        if (m_securityManager.hasRole(dbc, dbc.currentUser(), role)) {
+        if (m_securityManager.hasRole(dbc, dbc.currentUser(), role)) {  // &line[roles]
             orgUnits.add(ou);
         }
         if (includeSubOus) {
             Iterator<CmsOrganizationalUnit> it = getOrganizationalUnits(dbc, ou, true).iterator();
             while (it.hasNext()) {
                 CmsOrganizationalUnit orgUnit = it.next();
-                if (m_securityManager.hasRole(dbc, dbc.currentUser(), role.forOrgUnit(orgUnit.getName()))) {
+                if (m_securityManager.hasRole(dbc, dbc.currentUser(), role.forOrgUnit(orgUnit.getName()))) {  // &line[roles]
                     orgUnits.add(orgUnit);
                 }
             }
@@ -5895,7 +5895,7 @@ public final class CmsDriverManager implements I_CmsEventListener {
             }
         }
 
-        if (!m_securityManager.hasRole(
+        if (!m_securityManager.hasRole( // &line[roles]
             dbc,
             newUser,
             CmsRole.ADMINISTRATOR.forOrgUnit(dbc.getRequestContext().getOuFqn()))) {

@@ -119,7 +119,7 @@ implements I_CmsPasswordHandler, I_CmsPasswordSecurityEvaluator, I_CmsPasswordGe
             success = plainPassword.equals(digestedPassword); // TODO: time constant compare?
         } else if (DIGEST_TYPE_SCRYPT.equals(m_digestType)) {
             try {
-                success = SCryptUtil.check(plainPassword, digestedPassword); // TODO: feature
+                success = SCryptUtil.check(plainPassword, digestedPassword);
             } catch (IllegalArgumentException e) {
                 // hashed valued not right, check if we want to fall back to MD5
                 if (useFallback) {
@@ -144,7 +144,6 @@ implements I_CmsPasswordHandler, I_CmsPasswordSecurityEvaluator, I_CmsPasswordGe
     /**
      * @see org.opencms.security.I_CmsPasswordHandler#digest(java.lang.String)
      */
-    // TODO: Feature
     public String digest(String password) throws CmsPasswordEncryptionException {
 
         return digest(password, m_digestType, m_inputEncoding);

@@ -225,7 +225,7 @@ public final class OpenCmsCore {
     private CmsAliasManager m_aliasManager;
 
     /** Map of API authorization handlers, with their names as keys. */
-    private Map<String, I_CmsApiAuthorizationHandler> m_apiAuthorizations;
+    private Map<String, I_CmsApiAuthorizationHandler> m_apiAuthorizations;  // &line[api_authorization]
 
     /** The configured authorization handler. */
     private I_CmsAuthorizationHandler m_authorizationHandler;  // &line[authorization]
@@ -564,11 +564,13 @@ public final class OpenCmsCore {
      * @param name the name of the API authorization handler
      * @return the API authorization handler, or null if it wasn't found
      */
+    // &begin[api_authorization]
     protected I_CmsApiAuthorizationHandler getApiAuthorization(String name) {
 
         return m_apiAuthorizations.get(name);
 
     }
+    // &end[api_authorization]
 
     /**
      * Returns the configured authorization handler.<p>
@@ -983,10 +985,12 @@ public final class OpenCmsCore {
      *
      * @return the text encryptions
      */
+    // &begin[text_encryption]
     protected Map<String, I_CmsTextEncryption> getTextEncryptions() {
 
         return m_textEncryptions;
     }
+    // &end[text_encryption]
 
     /**
      * Returns the OpenCms Thread store.<p>
@@ -1820,10 +1824,12 @@ public final class OpenCmsCore {
             CmsPublishScheduledDialog.setAdminCms(initCmsObject(adminCms));
 
             m_workflowManager.initialize(initCmsObject(adminCms));
+            // &begin[api_authorization]
             m_apiAuthorizations = systemConfiguration.getApiAuthorizations();
             for (I_CmsApiAuthorizationHandler apiAuthorization : m_apiAuthorizations.values()) {
                 apiAuthorization.initialize(initCmsObject(adminCms));
             }
+            // &end[api_authorization]
 
             for (I_CmsResourceInit resourceInit : m_resourceInitHandlers) {
                 if (resourceInit instanceof I_CmsNeedsAdminCmsObject) {
@@ -1836,11 +1842,13 @@ public final class OpenCmsCore {
                 }
             }
 
+            // &begin[text_encryption]
             m_textEncryptions = new LinkedHashMap<>();
             for (I_CmsTextEncryption encryption : systemConfiguration.getTextEncryptions().values()) {
                 encryption.initialize(OpenCms.initCmsObject(adminCms));
                 m_textEncryptions.put(encryption.getName(), encryption);
             }
+            // &end[text_encryption]
 
             // &begin[twofactor]
             m_twoFactorAuthenticationHandler = new CmsTwoFactorAuthenticationHandler(

@@ -191,7 +191,7 @@ public class CmsDefaultAuthorizationHandler extends A_CmsAuthorizationHandler {
                     paramList.add(
                         PARAM_ENCRYPTED_REQUESTED_RESOURCE
                             + "="
-                            + OpenCms.getDefaultTextEncryption().encrypt(CmsEncoder.decode(callbackURL)));
+                            + OpenCms.getDefaultTextEncryption().encrypt(CmsEncoder.decode(callbackURL))); // &line[text_encryption]
                 } catch (CmsEncryptionException e) {
                     LOG.error(e.getLocalizedMessage(), e);
                 }

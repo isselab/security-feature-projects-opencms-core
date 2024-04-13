@@ -164,7 +164,7 @@ public class CmsUserDataImportList extends A_CmsUsersList {
                         String password = user.getPassword();
                         if (password.indexOf("_") == -1) {
                             try {
-                                password = OpenCms.getPasswordHandler().digest(password); // TODO: feature
+                                password = OpenCms.getPasswordHandler().digest(password);
                             } catch (CmsPasswordEncryptionException e) {
                                 throw new CmsRuntimeException(
                                     Messages.get().container(Messages.ERR_DIGEST_PASSWORD_0),

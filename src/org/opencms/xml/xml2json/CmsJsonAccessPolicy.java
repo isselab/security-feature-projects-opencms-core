@@ -54,7 +54,7 @@ import org.dom4j.io.SAXReader;
 public class CmsJsonAccessPolicy {
 
     /** Default property filter: Property name must not contain secret, api, password or key. */
-    public static final Pattern DEFAULT_PROP_FILTER = Pattern.compile("(?i)^(?!.*(?:secret|api|password|key)).*$"); // TODO: feature
+    public static final Pattern DEFAULT_PROP_FILTER = Pattern.compile("(?i)^(?!.*(?:secret|api|password|key)).*$"); // &line[json_property_filter]
 
     /** Default CORS filter. */
     public static final String DEFAULT_CORS_FILTER = "*";

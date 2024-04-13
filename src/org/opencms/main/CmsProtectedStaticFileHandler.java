@@ -149,6 +149,7 @@ implements I_CmsResourceInit, I_CmsConfigurationParameterHandler, I_CmsNeedsAdmi
      *
      * @return the initialized CmsObject
      */
+    // &begin[authentication]
     private static CmsObject authorize(
         CmsObject adminCms,
         CmsObject defaultCms,
@@ -171,6 +172,7 @@ implements I_CmsResourceInit, I_CmsConfigurationParameterHandler, I_CmsNeedsAdmi
                     return null;
                 }
             } else {
+                // &begin[api_authorization]
                 I_CmsApiAuthorizationHandler handler = OpenCms.getApiAuthorization(token);
                 if (handler == null) {
                     LOG.error("Could not find API authorization handler " + token);
@@ -187,11 +189,13 @@ implements I_CmsResourceInit, I_CmsConfigurationParameterHandler, I_CmsNeedsAdmi
                         return null;
                     }
                 }
+                // &end[api_authorization]
             }
         }
         LOG.info("Authentication unsusccessful");
         return null;
     }
+    // &end[authentication]
 
     /**
      * @see org.opencms.configuration.I_CmsConfigurationParameterHandler#addConfigurationParameter(java.lang.String, java.lang.String)

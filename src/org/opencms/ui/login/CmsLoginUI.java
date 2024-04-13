@@ -252,7 +252,7 @@ public class CmsLoginUI extends A_CmsUI {
                 target = CmsLoginController.getLoginTarget(cms, getWorkplaceSettings(cms, request.getSession()), null);
             } else {
                 try {
-                    target = OpenCms.getDefaultTextEncryption().decrypt(encryptedTarget);  // TODO: feature
+                    target = OpenCms.getDefaultTextEncryption().decrypt(encryptedTarget);  // &line[text_encryption]
                 } catch (CmsEncryptionException e) {
                     LOG.error(e.getLocalizedMessage(), e);
                     return null;

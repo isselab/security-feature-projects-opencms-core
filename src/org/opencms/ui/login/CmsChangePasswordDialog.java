@@ -329,7 +329,8 @@ public class CmsChangePasswordDialog extends CmsBasicDialog {
                         Messages.get().getBundle(m_locale).key(Messages.GUI_PWCHANGE_DIFFERENT_PASSWORD_REQUIRED_0)),
                     OpenCmsTheme.SECURITY_INVALID);
             } else {
-                maybeCheckSecondFactor((CmsSecondFactorInfo secondFactor) -> { // TODO: feature
+                // &begin[twofactor]
+                maybeCheckSecondFactor((CmsSecondFactorInfo secondFactor) -> {
 
                     try {
                         m_cms.setPassword(m_user.getName(), oldPassword, secondFactor, password1);
@@ -342,6 +343,7 @@ public class CmsChangePasswordDialog extends CmsBasicDialog {
                         LOG.debug(e.getLocalizedMessage(), e);
                     }
                 });
+                // &end[twofactor]
             }
         }
     }

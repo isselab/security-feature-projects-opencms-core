@@ -976,7 +976,7 @@ public final class CmsJspStandardContextBean {
     public String decrypt(String text) {
 
         try {
-            return OpenCms.getTextEncryptions().get("default").decrypt(text);
+            return OpenCms.getTextEncryptions().get("default").decrypt(text); // &begin[text_encryption]
         } catch (Exception e) {
             return null;
         }
@@ -1014,7 +1014,7 @@ public final class CmsJspStandardContextBean {
     public String encrypt(String text) {
 
         try {
-            return OpenCms.getTextEncryptions().get("default").encrypt(text);
+            return OpenCms.getTextEncryptions().get("default").encrypt(text);  // &line[text_encryption]
         } catch (Exception e) {
             return null;
         }

@@ -88,13 +88,14 @@ public class CmsSetPasswordDialog extends CmsChangePasswordDialog {
         String password1 = m_form.getPassword1();
         String password2 = m_form.getPassword2();
         if (validatePasswords(password1, password2)) {
+            // &begin[twofactor]
             maybeCheckSecondFactor((CmsSecondFactorInfo secondFactorInfo) -> {
                 try {
                     CmsTwoFactorAuthenticationHandler twoFactorHandler = OpenCms.getTwoFactorAuthenticationHandler();
                     if (twoFactorHandler.needsTwoFactorAuthentication(m_user)
                         && twoFactorHandler.hasSecondFactor(m_user)) {
                         if (!twoFactorHandler.verifySecondFactor(m_user, secondFactorInfo)) {
-                            throw new CmsAuthentificationException( // TODO: feature
+                            throw new CmsAuthentificationException(
                                 org.opencms.security.Messages.get().container(
                                     org.opencms.security.Messages.ERR_VERIFICATION_FAILED_1,
                                     m_user.getName()));
@@ -114,6 +115,7 @@ public class CmsSetPasswordDialog extends CmsChangePasswordDialog {
                     LOG.error(e.getLocalizedMessage(), e);
                 }
             });
+            // &end[twofactor]
         }
     }
 

@@ -87,7 +87,6 @@ public class CmsPasswordInfo {
      *
      * @throws CmsException if something goes wrong
      */
-    // TODO: Feature
     public void applyChanges() throws CmsException {
 
         if (m_userName == null) {

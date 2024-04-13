@@ -98,7 +98,7 @@ public class CmsJspLoginPersistingBean extends CmsJspLoginBean {
     /**
      * @see org.opencms.jsp.CmsJspLoginBean#login(java.lang.String, java.lang.String, java.lang.String)
      */
-    @Override // TODO: feature
+    @Override
     public void login(String userName, String password, String projectName) {
 
         super.login(userName, password, projectName);

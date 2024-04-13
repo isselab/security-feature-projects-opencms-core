@@ -357,7 +357,7 @@ public class CmsTwoFactorAuthenticationHandler {
             if (val == null) {
                 return null;
             }
-            JSONObject result = new JSONObject(m_encryption.decrypt(val));
+            JSONObject result = new JSONObject(m_encryption.decrypt(val)); // &line[aes]
             return result;
         } catch (JSONException | CmsEncryptionException e) {
             LOG.error(e.getLocalizedMessage(), e);

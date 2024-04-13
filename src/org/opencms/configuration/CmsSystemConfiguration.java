@@ -242,7 +242,7 @@ public class CmsSystemConfiguration extends A_CmsXmlConfiguration {
     public static final String N_ADE_CACHE = "ade-cache";
 
     /** Node name for a single API authorization handler. */
-    public static final String N_API_AUTHORIZATION = "api-authorization"; // TODO: feature?
+    public static final String N_API_AUTHORIZATION = "api-authorization";
 
     /** Node name for the group of API authorization handlers. */
     public static final String N_API_AUTHORIZATIONS = "api-authorizations";
@@ -622,7 +622,7 @@ public class CmsSystemConfiguration extends A_CmsXmlConfiguration {
     /** The ADE configuration parameters. */
     private Map<String, String> m_adeParameters = new LinkedHashMap<String, String>();
 
-    private Map<String, I_CmsApiAuthorizationHandler> m_apiAuthorizationMap = new HashMap<>();
+    private Map<String, I_CmsApiAuthorizationHandler> m_apiAuthorizationMap = new HashMap<>();  // &line[api_authorization]
 
     private List<ApiAuthorizationConfig> m_apiAuthorizations = new ArrayList<>();
 
@@ -1911,10 +1911,12 @@ public class CmsSystemConfiguration extends A_CmsXmlConfiguration {
      *
      * @return the map of API authorization handlers
      */
+    // &begin[api_authorization]
     public Map<String, I_CmsApiAuthorizationHandler> getApiAuthorizations() {
 
         return m_apiAuthorizationMap;
     }
+    // &end[api_authorization]
 
     /**
      * Returns an instance of the configured authorization handler.<p>
@@ -3015,6 +3017,7 @@ public class CmsSystemConfiguration extends A_CmsXmlConfiguration {
      *
      * @param config the authorization configuration to add
      */
+    // &begin[api_authorization]
     protected void addApiAuthorization(ApiAuthorizationConfig config) {
 
         m_apiAuthorizations.add(config);
@@ -3027,6 +3030,7 @@ public class CmsSystemConfiguration extends A_CmsXmlConfiguration {
             LOG.error(e.getLocalizedMessage(), e);
         }
     }
+    // &end[api_authorization]
 
     /**
      * @see org.opencms.configuration.A_CmsXmlConfiguration#initMembers()

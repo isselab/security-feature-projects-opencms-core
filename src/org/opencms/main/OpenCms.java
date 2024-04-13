@@ -206,10 +206,12 @@ public final class OpenCms {
      *
      * @return an API authorization handler
      */
+    // &begin[api_authorization]
     public static I_CmsApiAuthorizationHandler getApiAuthorization(String name) {
 
         return OpenCmsCore.getInstance().getApiAuthorization(name);
     }
+    // &end[api_authorization]
 
     /**
      * Returns the configured authorization handler.<p>
@@ -258,10 +260,12 @@ public final class OpenCms {
      *
      * @return the default text encryption
      */
+    // &begin[text_encryption]
     public static I_CmsTextEncryption getDefaultTextEncryption() {
 
         return getTextEncryptions().get("default");
     }
+    // &end[text_encryption]
 
     /**
      * Returns the default user and group name configuration.<p>
@@ -627,10 +631,12 @@ public final class OpenCms {
      *
      * @return the map of text encryption methods
      */
+    // &begin[text_encryption]
     public static Map<String, I_CmsTextEncryption> getTextEncryptions() {
 
         return OpenCmsCore.getInstance().getTextEncryptions();
     }
+    // &end[text_encryption]
 
     /**
      * Returns the OpenCms Thread store.<p>
